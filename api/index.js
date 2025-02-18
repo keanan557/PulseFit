@@ -24,6 +24,59 @@ const pool = mysql.createPool({
     database: process.env.DATABASE 
 })
 
+app.patch('/api/products/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, description, price, quantity } = req.body;
+  const query = 'UPDATE products SET name=?, description=?, price=?, quantity=? WHERE id=?';
+  try {
+      const [result] = await pool.execute(query, [name, description, price, quantity, id]);
+      res.json({ message: 'Product updated successfully' });
+  } catch (error) {
+      res.status(500).json({ error: 'Database error' });
+  }
+});
+app.delete('/api/products/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      const [result] = await pool.execute('DELETE FROM products WHERE id=?', [id]);
+      res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+      res.status(500).json({ error: 'Database error' });
+  }
+});
+
+app.post('/api/register', async (req, res) => {
+  const { name, email, password } = req.body;
+
+  // Check if user already exists
+  const [existingUser] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+  if (existingUser.length > 0) {
+    return res.status(400).json({ error: 'Email already registered' });
+  }
+
+  // Hash the password before storing
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  try {
+    const [result] = await pool.query(
+      'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)',
+      [name, email, hashedPassword]
+    );
+
+    // Generate a JWT token
+    const token = jwt.sign({ userId: result.insertId }, 'your_jwt_secret', { expiresIn: '1h' });
+
+    res.status(201).json({
+      message: 'Registration successful!',
+      token,  // Send token back to the client
+    });
+  } catch (err) {
+    console.error('Error inserting into db:', err);
+    res.status(500).json({ error: 'Error inserting into db' });
+  }
+});
+
+
 // Admin login API
 app.post('/api/admin/login', async (req, res) => {
     const { username, password } = req.body;

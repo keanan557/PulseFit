@@ -7,6 +7,7 @@ import RegisterPage from '@/components/RegisterPage.vue'
 import AdminLogin from '@/components/AdminLogin.vue'
 import AdminHome from '@/components/AdminHome.vue'
 import AddNewProducts from '@/components/AddNewProducts.vue'
+import AdminEditProducts from '@/components/AdminEditProducts.vue'
 
 const routes = [
   {
@@ -42,6 +43,10 @@ const routes = [
     path: '/AddNewProducts',
     component: AddNewProducts
   },
+  {
+    path: '/AdminEditProducts',
+    component: AdminEditProducts
+  }
 
 ]
 

@@ -4,7 +4,6 @@ import mysql from 'mysql2/promise'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import multer from 'multer'
-// import fs from 'fs'
 import path from 'path'
 import { config } from 'dotenv'
 config()
@@ -22,6 +21,46 @@ const pool = mysql.createPool({
     password: process.env.PASSWORD,
     database: process.env.DATABASE 
 })
+
+
+
+app.post('/api/user/login', async (req, res) => {
+  const { email, password } = req.body;  // Expecting 'email' and 'password' in the body
+
+  try {
+    // Check if the user exists by email
+    const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+
+    if (rows.length === 0) {
+      return res.status(400).json({ error: 'Invalid email or password' });
+    }
+
+    const user = rows[0];
+
+    // Validate the password using bcrypt
+    const isMatch = await bcrypt.compare(password, user.password_hash);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Invalid email or password' });
+    }
+
+    // Generate a JWT token for the user
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET,  // Use the JWT secret stored in your .env
+      { expiresIn: '1h' }  // Set the token expiration time
+    );
+
+    // Respond with the token and user details
+    res.json({ token, email: user.email });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+
+
+
 
 // Fetch all admin users
 app.get('/api/admin_users', async (req, res) => {
@@ -118,46 +157,40 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Admin login API
 app.post('/api/admin/login', async (req, res) => {
-    const { username, password } = req.body;
-  // console.log('papi');
-  
-    try {
-      // Check if the admin exists
-      const [rows] = await pool.query('SELECT * FROM admin_users WHERE username = ?', [username]);
-  
-      if (rows.length === 0) {
-        return res.status(400).json({ error: 'Invalid username or password' });
-      }
-  
-      // Compare the password with the stored hashed password
-      const admin = rows[0];
-      console.log(admin, password);
-    //   let hash = await bcrypt.hash(password,10)
-      const isMatch = await bcrypt.compare(password, admin.password);
-  console.log(isMatch);
-  
-      if (!isMatch) {
-        return res.status(400).json({ error: 'Invalid username or password' });
-      }
-  
-      // Generate a JWT token with username only
-      const token = jwt.sign(
-        { id: admin.id, username: admin.username },
-        process.env.JWT_SECRET,  // Store JWT secret in .env
-        { expiresIn: '1h' }
-      );
-      let value = jwt.verify(token, process.env.JWT_SECRET)
-  
-      // Return the token to the client
-      res.json({ token });
-  
-    } catch (error) {
-      console.error('Error during login:', error);
-      res.status(500).json({ error: 'Server error' });
+  const { username, password } = req.body; // Use email here
+
+  try {
+    // Assuming your admin_users table has an email column
+    const [rows] = await pool.query('SELECT * FROM admin_users WHERE username = ?', [username]);
+
+    if (rows.length === 0) {
+      return res.status(400).json({ error: 'Invalid email or password' });
     }
+
+    const admin = rows[0];
+    console.log("Admin:", admin, "Provided password:", password);
+
+    const isMatch = await bcrypt.compare(password, admin.password);
+    console.log("Password match:", isMatch);
+
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Invalid email or password' });
+    }
+
+    const token = jwt.sign(
+      { id: admin.id, email: admin.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    res.json({ token });
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
+
 
 import fs from 'fs';
 

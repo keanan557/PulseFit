@@ -3,16 +3,20 @@ import {createStore} from 'vuex'
 export default createStore({
     state:{
         products:[],
-        cart: []
+        cart: [],
+        user:null
     },
     mutations:{
+        setUser(state, userName){
+            state.user = {name: userName}
+        },
         set_products(state, products){
             state.products = products
         },
         add_to_cart(state, product){
             const existingProduct = state.cart.find(item => item.id === product.id)
             if(existingProduct){
-                existingProduct.quanity += 1
+                existingProduct.quantity += 1
             }else{
                 state.cart.push({...product, quantity: 1})
             }
@@ -45,10 +49,21 @@ export default createStore({
         },
         removeFromCart({ commit }, id) {
             commit('remove_from_cart', id);
+        },
+        login({commit}, userName){
+            localStorage.setItem("authToken", userName);
+            localStorage.setItem("userName", userName);
+            commit('setUser', userName)
+        },
+        logout({commit}){
+            commit('setUser', null)
         }
     },
     getters: {
         allProducts: (state) => state.products,
-        cartItems: (state) => state.cart
+        cartItems: (state) => state.cart,
+        user(state){
+            return state.user
+        }
       }
 })

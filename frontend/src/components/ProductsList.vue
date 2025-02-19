@@ -9,7 +9,7 @@
 
           <h3>{{ product.name }}</h3>
           <p>{{ product.description }}</p>
-          <p>Price: ${{ product.price }}</p>
+          <p>Price: R{{ product.price }}</p>
           <p>Quantity: {{ product.quantity }}</p>
 
           <button @click="addToCart(product)">+ cart</button>

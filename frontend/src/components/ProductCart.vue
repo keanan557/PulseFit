@@ -20,7 +20,7 @@
               <button @click="updateQuantity(item, 1)">+</button>
             </p>
             
-            <p>Total: ${{ (item.price * item.quantity).toFixed(2) }}</p>
+            <p>Total: R{{ (item.price * item.quantity).toFixed(2) }}</p>
             
             <!-- Remove button -->
             <button @click="removeFromCart(item)">Remove</button>

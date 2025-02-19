@@ -16,13 +16,55 @@ app.use(express.json())
 
 app.use('/uploads', express.static('uploads'));
 
-
 const pool = mysql.createPool({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE 
 })
+
+// Fetch all admin users
+app.get('/api/admin_users', async (req, res) => {
+  try {
+      const [rows] = await pool.execute('SELECT * FROM admin_users');
+      res.json(rows);
+  } catch (error) {
+      res.status(500).json({ error: 'Database error' });
+  }
+});
+// Add a new admin user
+app.post('/api/admin_users', async (req, res) => {
+  const { username, password, email } = req.body;
+  try {
+      await pool.execute('INSERT INTO admin_users (username, password, email) VALUES (?, ?, ?)',
+          [username, password, email]);
+      res.json({ message: 'Admin user added successfully' });
+  } catch (error) {
+      res.status(500).json({ error: 'Database error' });
+  }
+});
+// Update an admin user
+app.patch('/api/admin_users/:id', async (req, res) => {
+  const { id } = req.params;
+  const { username, password, email } = req.body;
+  try {
+      await pool.execute('UPDATE admin_users SET username=?, password=?, email=? WHERE id=?',
+          [username, password, email, id]);
+      res.json({ message: 'Admin user updated successfully' });
+  } catch (error) {
+      res.status(500).json({ error: 'Database error' });
+  }
+});
+// Delete an admin user
+app.delete('/api/admin_users/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      await pool.execute('DELETE FROM admin_users WHERE id=?', [id]);
+      res.json({ message: 'Admin user deleted successfully' });
+  } catch (error) {
+      res.status(500).json({ error: 'Database error' });
+  }
+});
 
 app.patch('/api/products/:id', async (req, res) => {
   const { id } = req.params;
@@ -75,7 +117,6 @@ app.post('/api/register', async (req, res) => {
     res.status(500).json({ error: 'Error inserting into db' });
   }
 });
-
 
 // Admin login API
 app.post('/api/admin/login', async (req, res) => {
@@ -139,7 +180,6 @@ const storage = multer.diskStorage({
 // Create the multer instance with the storage configuration
 const upload = multer({ storage });
 
-
   // Updated POST route for adding a product using multer for image upload
 app.post('/api/products', upload.single('image'), async (req, res) => {
   try {
@@ -158,8 +198,6 @@ const [result] = await pool.query(
   'INSERT INTO products (name, description, price, image, quantity) VALUES (?, ?, ?, ?, ?)',
   [name, description, price, image, productQuantity]
 );
-
-
     res.status(201).json({
       message: 'Product inserted successfully',
       productId: result.insertId
@@ -169,7 +207,6 @@ const [result] = await pool.query(
     res.status(500).json({ error: 'Failed to insert product.' });
   }
 });
-
 
 // Get all products
 app.get('/api/products', async (req, res) => {
@@ -181,9 +218,6 @@ app.get('/api/products', async (req, res) => {
       res.status(500).json({ error: 'Failed to fetch products.' });
   }
 });
-
-
-  
 
 app.listen(PORT, ()=>{
     console.log('http://localhost:3000');

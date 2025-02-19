@@ -28,7 +28,12 @@ export default {
     // Hide regular navbar on admin-related pages
     isAdminPage() {
       const path = this.$route.path;
-      return path.startsWith("/AdminHome") || path.startsWith("/AddNewProducts") || path.startsWith("/AdminEditProducts");
+      return path.startsWith("/AdminHome") ||
+       path.startsWith("/AddNewProducts") ||
+        path.startsWith("/AdminEditProducts") ||
+         path.startsWith("/OrdersPage")
+         ||
+         path.startsWith("/AddNewAdmin");
     }
   },
   name: 'App',

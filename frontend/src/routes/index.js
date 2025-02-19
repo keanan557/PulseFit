@@ -8,6 +8,9 @@ import AdminLogin from '@/components/AdminLogin.vue'
 import AdminHome from '@/components/AdminHome.vue'
 import AddNewProducts from '@/components/AddNewProducts.vue'
 import AdminEditProducts from '@/components/AdminEditProducts.vue'
+// import Orders from '@/components/OrdersPage.vue'
+import OrdersPage from '@/components/OrdersPage.vue'
+import AddNewAdmin from '@/components/AddNewAdmin.vue'
 
 const routes = [
   {
@@ -46,7 +49,16 @@ const routes = [
   {
     path: '/AdminEditProducts',
     component: AdminEditProducts
+  },
+  {
+    path: '/OrdersPage',
+    component: OrdersPage
+  },
+  {
+    path: '/AddNewAdmin',
+    component: AddNewAdmin
   }
+  
 
 ]
 

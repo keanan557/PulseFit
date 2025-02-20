@@ -1,16 +1,16 @@
 <template>
     <div class="home-page">
       <!-- Header Section -->
-      <header class="navbar">
+      <!-- <header class="navbar"> -->
         <!-- Image as Logo -->
         <!-- <img width=150px length=150px src="@/assets/Screenshot_2025-02-13_144904-removebg-preview.png" alt="Gym Gear Logo" class="navbar-logo" /> -->
-        <router-link to="/" class="logo"></router-link>
+        <!-- <router-link to="/" class="logo"></router-link>
         <div class="nav-links">
           <router-link to="/cart">Cart</router-link>
           <router-link to="/login">Login</router-link>
           <router-link to="/register">Register</router-link>
         </div>
-      </header>
+      </header> -->
     </div>
       <div>
       <section class="featured-products">

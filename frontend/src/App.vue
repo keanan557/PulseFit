@@ -1,6 +1,7 @@
 <template>
   <!-- Show regular navbar only when you're not on any admin page -->
-  <nav v-if="!isAdminPage">
+  <header class="navbar">
+  <nav v-if="!isAdminPage" class="nav-links">
     <router-link to="/">Home</router-link> |
     <router-link to="/products">Products</router-link> |
     <router-link to="/cart">Cart</router-link>   |   
@@ -11,7 +12,7 @@
     <span v-if="isLoggedIn">Welcome, {{ userName }}!</span>
     <button v-if="isLoggedIn" @click="logout">Logout</button>
   </nav>
-
+</header>
   <!-- Show AdminNavbar only on admin pages -->
   <AdminNavbar v-if="isAdminPage" />
 
@@ -58,3 +59,29 @@ userName() {
   
 }
 </script>
+
+<style>
+    .navbar {
+    background-color: #000;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #E60000; /* Red */
+    text-decoration: none;
+  }
+  .navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+  }
+  .navbar .nav-links a:hover {
+    color: #E60000; /* Red on hover */
+  }
+</style>

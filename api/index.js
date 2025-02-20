@@ -1,6 +1,5 @@
 import cors from 'cors'
 import express from 'express'
-import mysql from 'mysql2/promise'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import multer from 'multer'
@@ -15,14 +14,23 @@ app.use(express.json())
 
 app.use('/uploads', express.static('uploads'));
 
-const pool = mysql.createPool({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE 
-})
-
-
+//orders api
+//fetches the data
+app.get('/api/orders', async (req, res) => {
+  try {
+      const [rows] = await pool.execute(`
+          SELECT orders.order_id, users.user_name AS user_name, products.product_name AS product_name, products.image AS image,
+                 orders.quantity, orders.order_date
+          FROM orders
+          JOIN users ON orders.user_id = users.user_id
+          JOIN products ON orders.product_id = products.product_id
+          ORDER BY orders.order_date DESC
+      `);
+      res.json(rows);
+  } catch (error) {
+      res.status(500).json({ error: 'Database error' });
+  }
+});
 
 app.post('/api/user/login', async (req, res) => {
   const { email, password } = req.body;  // Expecting 'email' and 'password' in the body

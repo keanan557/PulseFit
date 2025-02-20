@@ -84,18 +84,14 @@ export default {
       loading.value = true;
 
       try {
-        // Make sure to use the correct URL based on your backend
-        // For admin login, use: "/api/admin/login"
-        // For user login, adjust accordingly.
         const response = await fetch("http://localhost:3000/api/user/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: email.value, // or "username" if your backend expects that
+            email: email.value,
             password: password.value,
           }),
         });
-
         const data = await response.json();
         if (response.ok) {
           localStorage.setItem("authToken", data.token);

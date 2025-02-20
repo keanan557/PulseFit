@@ -50,13 +50,14 @@ app.post('/api/user/login', async (req, res) => {
       { expiresIn: '1h' }  // Set the token expiration time
     );
 
-    // Respond with the token and user details
-    res.json({ token, email: user.email });
+    // Respond with the token and user details (including name)
+    res.json({ token, name: user.name, email: user.email });
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).json({ error: 'Server error' });
   }
 });
+
 
 
 

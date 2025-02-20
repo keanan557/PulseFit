@@ -15,7 +15,4 @@ app.mixin({
 })
 
 
-createApp(App)
-  .use(router)  // Register the router
-  .use(store)   // Register Vuex store
-  .mount('#app');
+app.use(router).use(store).mount('#app');

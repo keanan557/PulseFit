@@ -8,7 +8,7 @@ export default createStore({
     },
     mutations:{
         setUser(state, userName){
-            state.user = {name: userName}
+            state.user = userName ? { name: userName } : null;
         },
         set_products(state, products){
             state.products = products

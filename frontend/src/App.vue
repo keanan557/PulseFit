@@ -34,6 +34,24 @@ export default {
          path.startsWith("/OrdersPage")
          ||
          path.startsWith("/AddNewAdmin");
+    },
+    isLoggedIn() {
+  return !!this.$store.state.user;
+},
+userName() {
+  return this.$store.state.user ? this.$store.state.user.name : '';
+}
+
+
+  },
+  methods: {
+    logout() {
+      // Clear localStorage and Vuex state
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("userName");
+      this.$store.commit("setUser", null);
+      // Optionally redirect to login
+      this.$router.push("/login");
     }
   },
   name: 'App',

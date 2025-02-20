@@ -3,7 +3,7 @@
 
     <h2>Welcome {{ username }}</h2>
 
-    <button @click="logout">Log out</button>
+   
 </template>
 
 <script>

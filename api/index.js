@@ -75,13 +75,17 @@ app.get('/api/admin_users', async (req, res) => {
 // Add a new admin user
 app.post('/api/admin_users', async (req, res) => {
   const { username, password, email } = req.body;
+  console.log(req.body);
   try {
-      await pool.execute('INSERT INTO admin_users (username, password, email) VALUES (?, ?, ?)',
-          [username, password, email]);
-      res.json({ message: 'Admin user added successfully' });
-  } catch (error) {
-      res.status(500).json({ error: 'Database error' });
-  }
+    // Hash the password before storing
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await pool.query('INSERT INTO admin_users (username, password, email) VALUES (?, ?, ?)',
+        [username, hashedPassword, email]);
+    res.json({ message: 'Admin user added successfully' });
+} catch (error) {
+    console.error('Error adding admin user:', error);
+    res.status(500).json({ error: 'Database error' });
+}
 });
 // Update an admin user
 app.patch('/api/admin_users/:id', async (req, res) => {

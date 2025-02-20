@@ -5,7 +5,7 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/products">Products</router-link> |
     <router-link to="/cart">Cart</router-link>   |   
-    <router-link to="/register">Register</router-link>
+    <router-link to="/Login">Login</router-link>
     
     <router-link to="/AdminLogin"><img class="admin_logo" src="/admin_logo.png" alt="Admin Logo" width="100"></router-link>
 
@@ -83,5 +83,11 @@ userName() {
   }
   .navbar .nav-links a:hover {
     color: #E60000; /* Red on hover */
+  }
+
+  .admin_logo{
+    width: 50px;
+    border: 1px solid red;
+    border-radius: 50px;
   }
 </style>

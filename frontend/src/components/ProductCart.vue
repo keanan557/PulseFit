@@ -27,7 +27,7 @@
       </ul>
 
       <div class="cart-summary">
-        <h3>Total Price: ${{ totalPrice.toFixed(2) }}</h3>
+        <h3>Total Price: R{{ totalPrice.toFixed(2) }}</h3>
         <button @click="toggleCheckout" class="checkout-toggle-button">
           {{ showCheckout ? "Back to Cart" : "Proceed to Checkout" }}
         </button>

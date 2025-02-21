@@ -107,7 +107,7 @@ userName() {
   background-color: red;
   color: white;
   border-radius: 50%;
-  padding: 5px 6px;
+  padding: 3px 4px;
   font-size: 12px;
   }
 

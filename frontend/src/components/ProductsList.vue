@@ -1,6 +1,7 @@
 <template>
     <div>
       <h2>Products</h2>
+      <label>Search :</label><input type="search"><button>Go!</button>
       <div v-if="loading">Loading products...</div>
       <div v-else-if="products.length === 0">No products available.</div>
       <ul v-else>

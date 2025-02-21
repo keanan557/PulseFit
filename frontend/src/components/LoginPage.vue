@@ -28,7 +28,7 @@
           <label>
             <input v-model="rememberMe" type="checkbox" /> Remember me
           </label>
-          <a href="#" class="forgot-link">Forgot Password?</a>
+          <router-link to="/forgotpassword" class="forgot-link">Forgot Password?</router-link>
         </div>
         <p
           v-if="message"

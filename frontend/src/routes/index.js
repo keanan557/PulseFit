@@ -11,6 +11,7 @@ import AdminEditProducts from '@/components/AdminEditProducts.vue'
 // import Orders from '@/components/OrdersPage.vue'
 import OrdersPage from '@/components/OrdersPage.vue'
 import AddNewAdmin from '@/components/AddNewAdmin.vue'
+import ForgotPassword from '@/components/ForgotPassword.vue'
 
 const routes = [
   {
@@ -57,6 +58,10 @@ const routes = [
   {
     path: '/AddNewAdmin',
     component: AddNewAdmin
+  },
+  {
+    path: '/forgotpassword',
+    component: ForgotPassword
   }
   
 

@@ -3,16 +3,17 @@ import express from 'express'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import multer from 'multer'
+import {pool} from './config/config.js'
+import apiRoutes from './routes/apiRoutes.js'
 import path from 'path'
 import { config } from 'dotenv'
 config()
 const PORT = process.env.PORT || 3000
-
 const app = express()
 app.use(cors())
 app.use(express.json())
-
 app.use('/uploads', express.static('uploads'));
+app.use('/api', apiRoutes)
 
 //orders api
 //fetches the data
@@ -31,6 +32,10 @@ app.get('/api/orders', async (req, res) => {
       res.status(500).json({ error: 'Database error' });
   }
 });
+
+
+
+
 
 app.post('/api/user/login', async (req, res) => {
   const { email, password } = req.body;  // Expecting 'email' and 'password' in the body
@@ -80,6 +85,15 @@ app.get('/api/admin_users', async (req, res) => {
       res.status(500).json({ error: 'Database error' });
   }
 });
+
+
+
+
+
+
+
+
+
 // Add a new admin user
 app.post('/api/admin_users', async (req, res) => {
   const { username, password, email } = req.body;
@@ -206,6 +220,7 @@ app.post('/api/admin/login', async (req, res) => {
 
 
 import fs from 'fs';
+import { error } from 'console'
 
 // Ensure uploads folder exists
 const uploadDir = path.join(process.cwd(), 'uploads');

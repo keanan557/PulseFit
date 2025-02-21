@@ -50,8 +50,8 @@ export default createStore({
         removeFromCart({ commit }, id) {
             commit('remove_from_cart', id);
         },
-        login({commit}, userName){
-            localStorage.setItem("authToken", userName);
+        login({commit}, {token, userName}){
+            localStorage.setItem("authToken", token);
             localStorage.setItem("userName", userName);
             commit('setUser', userName)
         },
@@ -64,6 +64,9 @@ export default createStore({
         cartItems: (state) => state.cart,
         user(state){
             return state.user
+        },
+        cartItemCount(state){
+            return state.cart.reduce((total, item)=> total + item.quantity, 0)
         }
       }
 })

@@ -71,11 +71,115 @@ export default {
 </script>
 
 <style scoped>
-h2 {
-  margin-bottom: 10px;
+/* Admin Container */
+.admin-container {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.order-img{
-  width: 100px;
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid red;
+  padding-bottom: 20px;
+}
+
+.header h1 {
+  color: red;
+  margin-left: 20px;  /* Added margin to move it slightly to the right */
+}
+
+/* Search Bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 5px;
+  background-color: #f9f9f9;
+  border-radius: 25px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  margin-left: 10px;
+}
+
+.search-btn svg {
+  fill: #333;
+  width: 20px;
+  height: 20px;
+  transition: fill 0.3s ease;
+}
+
+.search-btn:hover svg {
+  fill: #e60000;
+}
+
+/* Orders Table */
+.orders-table h2 {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.product-table th,
+.product-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-table th {
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+/* Hover effect for table rows */
+.product-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.table-auto th,
+.table-auto td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.order-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 </style>

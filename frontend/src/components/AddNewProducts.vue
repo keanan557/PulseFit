@@ -1,25 +1,31 @@
 <template>
-    <h1>Add New Products</h1>
+  <div class="background">
+    <h1>Add New Product</h1>
+    <form @submit.prevent="submitProduct">
+      <label>Name: </label>
+      <input type="text" v-model="name" required />
+      <br /><br />
 
-    <label>Name: </label>
-    <input type="text" v-model="name" required>
-<br><br>
-    <label>Description: </label>
-    <input type="text" v-model="description" required>
-    <br><br>
-    <label>Price: </label>
-    <input type="number" v-model="price" required>
-    <br><br>
-    <label>Image URL: </label>
+      <label>Description: </label>
+      <input type="text" v-model="description" required />
+      <br /><br />
+
+      <label>Price: </label>
+      <input type="number" v-model="price" required />
+      <br /><br />
+
+      <label>Image URL: </label>
     <input type="text" v-model="imageUrl" placeholder="Enter image URL">
     <br><br>
 
-    <label>quanity: </label>
-    <input type="number" v-model="quantity">
-    <br><br>
-    <button @click="submitProduct">+ Add New</button>
-</template>
+      <label>Quantity: </label>
+      <input type="number" v-model="quantity" />
+      <br /><br />
 
+      <button type="submit">+ Add New</button>
+    </form>
+  </div>
+</template>
 <script>
 export default {
   name: "AddNewProducts",
@@ -75,3 +81,95 @@ export default {
 
   
 </script>
+
+
+<style scoped>
+/* Background Styling */
+.background {
+  background-image: url('@/assets/adult-1850925_1280.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Make background cover full screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  padding: 20px; /* Add some padding to the sides */
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+  width: 100%;
+  max-width: 600px; /* Limit max width */
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6); /* Transparent background */
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/* Label Styling */
+label {
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  color: #fff;
+  margin-bottom: 5px; /* Add a little margin below the label */
+}
+
+/* Input Fields */
+input {
+  width: 100%;
+  padding: 12px; /* Increase padding for better spacing */
+  margin-top: 5px;
+  margin-bottom: 15px; /* Add bottom margin for spacing between fields */
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #FEFEFE;
+  transition: all 0.3s ease;
+  box-sizing: border-box; /* Make sure padding and borders are included in the element's total width/height */
+}
+
+/* Input Focus */
+input:focus {
+  border-color: #FF6600;
+  box-shadow: 0px 0px 8px rgba(255, 102, 0, 0.5);
+  outline: none;
+}
+
+/* Button Styling */
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #ff0000, #FF0000);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #FF3300, #CC2900);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+</style>

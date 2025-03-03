@@ -1,8 +1,16 @@
 <template>
   <div class="cart-checkout-container">
-    <h1>Shopping Cart</h1>
+    <h1 class="sc">Shopping Cart</h1>
 
-    <div v-if="cartItems.length === 0">Your cart is empty.</div>
+    <div v-if="cartItems.length === 0" class="empty-cart">
+      Your cart is empty.
+        <br>
+        <br>
+        <br>
+    <button class="gs">
+      <router-link to="/products" style="text-decoration: none;">Go shopping</router-link>  
+    </button>
+  </div> 
 
     <div v-else>
       <ul class="cart-items">
@@ -10,12 +18,12 @@
           <img :src="item.image" :alt="item.name" width="100" />
           <div class="item-details">
             <h3>{{ item?.name }}</h3>
-            <p>Price: ${{ item.price }}</p>
+            <p>Price: R{{ item.price }}</p>
             <p>
               Quantity:
-              <button @click="updateQuantity(item, -1)" :disabled="item.quantity <= 1">-</button>
+              <button @click="updateQuantity(item, -1)" :disabled="item.quantity <= 1" class="srb">-</button>
               {{ item.quantity }}
-              <button @click="updateQuantity(item, 1)">+</button>
+              <button @click="updateQuantity(item, 1)" class="srb">+</button>
             </p>
             <p>Total: R{{ (item.price * item.quantity).toFixed(2) }}</p>
             <button class="remove-button" @click="removeFromCart(item.product_id)">Remove</button>
@@ -39,7 +47,6 @@
        <div class="user-info">
         <h3>User</h3>
         <p>Name:{{ user?.name }}</p>
-        <p>Email:{{ user?.email }}</p>
        </div>
 
       <!-- Shipping Address -->
@@ -263,13 +270,45 @@ export default {
   }
 };
 </script>
-
 <style scoped>
+.empty-cart{
+  COLOR: red;
+  font-size: large;
+  text-align: center;
+}
+.gs {
+  background-color: #202022;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.link-button {
+  color: white;
+  text-decoration: none;
+}
+
+.gs:hover {
+  background-color: #0f0d0d; 
+}
+
+.sc{
+  color: whitesmoke;
+}
+
+.checkout-title{
+  color: black;
+}
+
 .cart-checkout-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #F5F5F5;
+  background-color: #161616;
   border-radius: 8px;
 }
 
@@ -283,7 +322,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
-  background: white;
+  background: rgb(253, 246, 246);
   padding: 10px;
   border-radius: 5px;
 }
@@ -293,12 +332,22 @@ export default {
   padding-left: 15px;
 }
 
+.srb{
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 7px;
+  cursor: pointer;
+}
+
 .remove-button {
   background: red;
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  border-radius: 4PX;
 }
 
 .cart-summary {
@@ -308,7 +357,7 @@ export default {
 
 .checkout-toggle-button,
 .submit-button {
-  background: #FF6347;
+  background: red;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -325,6 +374,6 @@ export default {
 }
 
 h3 {
-  color: #FF6347;
+  color: red;
 }
 </style>

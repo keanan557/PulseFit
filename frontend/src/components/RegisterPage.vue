@@ -128,88 +128,87 @@
   </script>
   
   <style scoped>
-  .input-field {
-    width: 90%;
-    padding: 10px 16px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-  }
-  .input-field:focus {
-    outline: none;
-    border-color: #4c51bf;
-    box-shadow: 0 0 0 2px rgba(75, 81, 191, 0.2);
-  }
-  .password-toggle {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #4c51bf;
-    cursor: pointer;
-  }
-  .submit-button {
-    width: 40%;
-    padding: 9px;
-    background-color: #4c51bf;
-    color: white;
-    font-weight: 600;
-    font-size: 1.125rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  .submit-button:disabled {
-    background-color: #d1d5db;
-    cursor: not-allowed;
-  }
-  .submit-button:hover:enabled {
-    background-color: #434190;
-  }
-  .text-center {
-    text-align: center;
-  }
-  .text-red-600 {
-    color: #e53e3e;
-  }
-  .text-green-600 {
-    color: #38a169;
-  }
-  .text-sm {
-    font-size: 0.875rem;
-  }
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  @keyframes fadeIn {
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-  }
-  .min-h-screen { min-height: 100vh; }
-  .flex { display: flex; }
-  .items-center { align-items: center; }
-  .justify-center { justify-content: center; }
-  .bg-gradient-to-r { background: linear-gradient(to right, #23182a, #ff0015); }
-  .bg-white { background-color: white; }
-  .px-6 { padding-left: 24px; padding-right: 24px; }
-  .py-12 { padding-top: 48px; padding-bottom: 48px; }
-  .max-w-md { max-width: 28rem; }
-  .w-full { width: 100%; }
-  .p-8 { padding: 32px; }
-  .rounded-xl { border-radius: 1rem; }
-  .shadow-xl { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-  .space-y-6 > *:not(:last-child) { margin-bottom: 24px; }
-  .text-3xl { font-size: 1.875rem; }
-  .font-extrabold { font-weight: 800; }
-  .text-gray-900 { color: #1a202c; }
-  .text-gray-600 { color: #718096; }
-  .text-blue-600 { color: #3182ce; }
-  .hover\:underline:hover { text-decoration: underline; }
-  .fas { font-family: "Font Awesome 5 Free", sans-serif; }
-  .fa-eye, .fa-eye-slash { font-size: 1.25rem; }
-  </style>
-  
+.input-field {
+  width: 90%;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+.input-field:focus {
+  outline: none;
+  border-color: #4c51bf;
+  box-shadow: 0 0 0 2px rgba(75, 81, 191, 0.2);
+}
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #4c51bf;
+  cursor: pointer;
+}
+.submit-button {
+  width: 40%;
+  padding: 9px;
+  background-color: #d50d0d;
+  color: white;
+  font-weight: 600;
+  font-size: 1.125rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.submit-button:disabled {
+  background-color: #d1d5db;
+  cursor: not-allowed;
+}
+.submit-button:hover:enabled {
+  background-color: #ff0000;
+}
+.text-center {
+  text-align: center;
+}
+.text-red-600 {
+  color: #e53e3e;
+}
+.text-green-600 {
+  color: #38a169;
+}
+.text-sm {
+  font-size: 0.875rem;
+}
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.min-h-screen { min-height: 100vh; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.bg-gradient-to-r { background: linear-gradient(to right, #23182a, #ff0015); }
+.bg-white { background-color: white; }
+.px-6 { padding-left: 24px; padding-right: 24px; }
+.py-12 { padding-top: 48px; padding-bottom: 48px; }
+.max-w-md { max-width: 28rem; }
+.w-full { width: 100%; }
+.p-8 { padding: 32px; }
+.rounded-xl { border-radius: 1rem; }
+.shadow-xl { box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.space-y-6 > *:not(:last-child) { margin-bottom: 24px; }
+.text-3xl { font-size: 1.875rem; }
+.font-extrabold { font-weight: 800; }
+.text-gray-900 { color: #1a202c; }
+.text-gray-600 { color: #718096; }
+.text-blue-600 { color: #3182ce; }
+.hover\:underline:hover { text-decoration: underline; }
+.fas { font-family: "Font Awesome 5 Free", sans-serif; }
+.fa-eye, .fa-eye-slash { font-size: 1.25rem; }
+</style>

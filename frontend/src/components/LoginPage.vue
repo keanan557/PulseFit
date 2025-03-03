@@ -11,7 +11,7 @@
             required
             class="input-field"
           />
-        </div>
+        </div><br>
         <div class="input-box relative">
           <input
             v-model="password"
@@ -131,7 +131,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .page-container {
   width: 100%;
@@ -142,6 +141,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .wrapper {
   width: 100%;
   max-width: 400px;
@@ -150,7 +150,12 @@ export default {
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center the content inside */
 }
+
 .input-field {
   width: 90%;
   padding: 10px 16px;
@@ -159,14 +164,17 @@ export default {
   font-size: 1rem;
   transition: all 0.2s ease;
 }
+
 .input-field:focus {
   outline: none;
   border-color: #4c51bf;
   box-shadow: 0 0 0 2px rgba(75, 81, 191, 0.2);
 }
+
 .input-box.relative {
   position: relative;
 }
+
 .password-toggle {
   position: absolute;
   top: 50%;
@@ -177,50 +185,62 @@ export default {
   color: #4c51bf;
   cursor: pointer;
 }
+
 .btn {
-  width: 40%;
+  width: 100%;  /* Full width to fill the container */
   padding: 10px;
-  background-color: #007bff;
+  background-color: #ff0000;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
 }
+
 .btn:disabled {
   background-color: #d1d5db;
   cursor: not-allowed;
 }
+
 .remember-forgot {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
   margin-top: 10px;
 }
+
 .forgot-link {
   color: white;
   text-decoration: underline;
 }
+
 .register-link {
   margin-top: 15px;
 }
+
 .text-center {
   text-align: center;
 }
+
 .text-red-600 {
   color: #e53e3e;
 }
+
 .text-green-600 {
   color: #38a169;
 }
+
 .text-sm {
   font-size: 0.875rem;
 }
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
+
 @keyframes fadeIn {
   50% { opacity: 0; }
   100% { opacity: 1; }
 }
 </style>
+

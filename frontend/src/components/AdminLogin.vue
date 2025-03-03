@@ -113,7 +113,7 @@ export default {
 /* Button styling */
 .btn {
   padding: 10px;
-  background-color: #007bff;
+  background-color: #ff0000;
   color: white;
   border: none;
   border-radius: 5px;

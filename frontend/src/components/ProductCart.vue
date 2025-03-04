@@ -35,6 +35,7 @@
         <button @click="proceedToCheckout" class="checkout-toggle-button">
           {{ showCheckout ? "Back to Cart" : "Proceed to Checkout" }}
         </button>
+        <button @click="clearCart" class="clear-cart-button">Clear Cart</button>
       </div>
     </div>
 
@@ -251,6 +252,12 @@ export default {
   }
 };
 
+// clear cart
+const clearCart = () =>{
+  store.commit('clearCart')
+  localStorage.removeItem('cart')
+}
+
 
     return {
       cartItems,
@@ -266,7 +273,8 @@ export default {
       submitPayment,
       proceedToCheckout,
       user,
-      token
+      token,
+      clearCart
     };
   }
 };

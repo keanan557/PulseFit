@@ -243,6 +243,7 @@ export default {
     alert('Order placed successfully!');
     store.commit('clearCart');
     localStorage.removeItem('cart')
+    showCheckout.value = false
 
   } catch (error) {
     console.error('Error submitting order:', error);

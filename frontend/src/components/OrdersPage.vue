@@ -14,6 +14,7 @@
           <th class="border px-4 py-2">Image</th>
           <th class="border px-4 py-2">Quantity</th>
           <th class="border px-4 py-2">Date</th>
+          <th class="border px-4 py-2">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -57,7 +58,13 @@
           </td>
           <td class="border px-4 py-2">{{ order.total_price }}</td>
           <td class="border px-4 py-2">{{ new Date(order.order_date).toLocaleString() }}</td>
+           <td>
+            <button @click="deleteOrder(order.order_id)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700">Delete</button>
+           </td>
         </tr>
+       
+
+        
       </tbody>
     </table>
   </div>
@@ -98,6 +105,28 @@ export default {
         this.loading = false;
       }
     },
+
+    async deleteOrder(orderId){
+      if (!confirm("Are you sure you want to delete this order?")) return; // Confirmation dialog
+
+try {
+  const response = await fetch(`http://localhost:3000/api/orders/${orderId}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete order");
+  }
+
+  // Remove deleted order from UI
+  this.orders = this.orders.filter(order => order.order_id !== orderId);
+} catch (error) {
+  console.error("Error deleting order:", error);
+}
+    }
+
+
+
   },
 };
 </script>

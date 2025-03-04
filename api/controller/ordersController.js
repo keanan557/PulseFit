@@ -60,3 +60,16 @@ export const getOrders = async(req,res)=>{
         res.status(500).json({ error: 'Failed to fetch orders.' });
     }
 }
+
+// delete orders controller
+
+export const deleteOrders = async(req,res)=>{
+
+  try{
+    const {id} = req.params
+    const orders = await ordersModel.deleteOrders(id)
+    res.json(orders)
+  }catch(error){
+    console.error('Error deleting orders:',error)
+  }
+}

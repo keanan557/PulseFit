@@ -78,3 +78,14 @@ export const getOrders = async () => {
         throw dbError; // Re-throw the error
     }
 };
+
+// delete order model
+export const deleteOrders = async(orderId)=>{
+    try{
+        const [order] = await pool.query("delete from orders where order_id=?",[orderId]) 
+        return order.affectedRows >0
+    }catch(error){
+        console.error("Error deleting order:", error)
+        throw error
+    }
+}

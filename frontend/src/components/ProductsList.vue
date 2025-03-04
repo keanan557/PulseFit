@@ -45,6 +45,11 @@
         <button @click.stop="addToCart(product)" class="add-to-cart-button">+ Cart</button>
       </div>
     </div>
+
+    <div v-if="notification" class="notification">
+      {{ notification }}
+    </div>
+
   </div>
 </template>
 
@@ -58,6 +63,9 @@ export default {
     const loading = ref(true);
     const searchQuery = ref("");
     const selectedProduct = ref(null);
+
+    const notification = ref(null)
+
     // Compute the products from Vuex state
     const products = computed(() => store.getters['allProducts']);
     // Computed property to filter products based on search query
@@ -74,9 +82,18 @@ export default {
       await store.dispatch('fetchProducts');
       loading.value = false;
     });
+
+
     const addToCart = (product) => {
       store.dispatch('addToCart', product);
+      notification.value = `${product.name} added to cart!`
+
+      setTimeout(()=>{
+        notification.value = null;
+      }, 2000);
     };
+
+   
 
     const performSearch = () => {
       console.log("Searching for:", searchQuery.value);
@@ -86,13 +103,30 @@ export default {
       selectedProduct.value = product;
     };
 
-    return { products, loading, addToCart, searchQuery, filteredProducts, performSearch, selectedProduct, viewProduct  };
+    return { products, loading, addToCart, searchQuery, filteredProducts, performSearch, selectedProduct, viewProduct,notification  };
   }
 };
 </script>
 
 
 <style scoped>
+/* Notification Styles */
+.notification {
+  background-color: red; /* Green background */
+ 
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  z-index: 1000; /* Ensure it's above other elements */
+  
+}
+
+
 /* General Styles */
 .products-container {
   background-color: #333;

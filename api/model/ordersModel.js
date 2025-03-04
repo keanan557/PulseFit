@@ -89,3 +89,47 @@ export const deleteOrders = async(orderId)=>{
         throw error
     }
 }
+
+// get orders for users model
+export const getOrdersForUser = async (userId) => {
+    try {
+      let [orders] = await pool.query(
+        `
+        SELECT 
+          orders.order_id,
+          orders.user_id,
+          users.name AS user_name,
+          users.email AS user_email,
+          orders.items,
+          orders.total_price,
+          orders.shipping_address,
+          orders.payment_method,
+          orders.order_date
+        FROM orders
+        JOIN users ON orders.user_id = users.user_id
+        WHERE orders.user_id = ?
+        ORDER BY orders.order_date DESC;
+        `,
+        [userId]
+      );
+  
+      return orders.map((order) => {
+        try {
+          const items = order.items ? JSON.parse(order.items) : [];
+          const shipping_address = JSON.parse(order.shipping_address);
+          return {
+            ...order,
+            items,
+            shipping_address,
+          };
+        } catch (parseError) {
+          console.error("JSON parsing error:", parseError);
+          console.log("Order data:", order);
+          return { ...order, items: [], shipping_address: {} };
+        }
+      });
+    } catch (dbError) {
+      console.error("Database error:", dbError);
+      throw dbError;
+    }
+  };

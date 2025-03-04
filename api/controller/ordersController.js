@@ -2,6 +2,7 @@
 
 // imports
 import * as ordersModel from '../model/ordersModel.js'
+import jwt from 'jsonwebtoken'
 
 export const addToOrders = async (req, res) => {
     console.log("Request Body:", req.body); 
@@ -71,5 +72,21 @@ export const deleteOrders = async(req,res)=>{
     res.json(orders)
   }catch(error){
     console.error('Error deleting orders:',error)
+  }
+}
+
+// get user orders
+export const getUserOrders =async (req, res) => {
+  try {
+    // Assuming req.user contains the authenticated user's data
+    const userId = req.user.user_id; // Or however you store the user ID
+
+    // Query your database to fetch orders for the specific user
+    const orders = await ordersModel.getOrdersForUser(userId)
+
+    res.json(orders);
+  } catch (error) {
+    console.error("Error fetching user orders:", error);
+    res.status(500).send("Error fetching orders.");
   }
 }

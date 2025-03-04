@@ -14,8 +14,8 @@
         </svg>
         <span class="cart-badge">{{ cartItemCount }}</span>
       </router-link> |
-      <router-link to="/Login">Login</router-link>
-
+      <router-link to="/Login">Login</router-link>  |
+      <router-link to="/MyProfile">My Profile</router-link>
       <router-link to="/AdminLogin">
         <img class="admin_logo" width="100" />
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">

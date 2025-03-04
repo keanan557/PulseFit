@@ -9,7 +9,7 @@
 
       <div class="hero-content">
         <h1>Elevate Your Fitness</h1>
-        <p>Shop the best gym equipment and gear!</p><br><br><br><h3>have</h3><br><br><br><br><br><br><br><br><br><br><br>
+        <p>Shop the best gym equipment and gear!</p><br><br><br><h3></h3><br><br><br><br><br><br><br><br><br><br><br>
         <button class="shop-now-btn">
           <a href="#categories" style="color: white; text-decoration: none;">Shop Now</a>
         </button>

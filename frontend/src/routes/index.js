@@ -13,6 +13,7 @@ import OrdersPage from '@/components/OrdersPage.vue'
 import AddNewAdmin from '@/components/AddNewAdmin.vue'
 import ForgotPassword from '@/components/ForgotPassword.vue'
 import DeleteUserAccount from '@/components/DeleteUserAccount.vue'
+import CustomerProfile from '@/components/CustomerProfile.vue'
 
 const routes = [
   {
@@ -67,6 +68,10 @@ const routes = [
   {
     path: '/deleteaccount',
     component: DeleteUserAccount
+  },
+  {
+    path: '/MyProfile',
+    component: CustomerProfile
   }
   
 

@@ -90,3 +90,17 @@ export const getUserOrders =async (req, res) => {
     res.status(500).send("Error fetching orders.");
   }
 }
+
+// ordersController.js
+export const cancelOrder = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    // Add code to update the order status or delete the order from your database
+    // Example using Sequelize:
+    // await Order.destroy({ where: { order_id: orderId, user_id: req.user.user_id } });
+    res.json({ message: "Order canceled successfully." });
+  } catch (error) {
+    console.error("Error canceling order:", error);
+    res.status(500).json({ error: "Failed to cancel order." });
+  }
+};

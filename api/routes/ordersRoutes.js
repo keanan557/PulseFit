@@ -1,6 +1,6 @@
 // orders routes
 
-import { addToOrders,getOrders,deleteOrders,getUserOrders,authenticateToken } from '../controller/ordersController.js';
+import { addToOrders,getOrders,deleteOrders,getUserOrders,authenticateToken,cancelOrder } from '../controller/ordersController.js';
 
 import express from 'express'
 
@@ -14,5 +14,6 @@ router.post('/api/orders', addToOrders);
 router.get('/api/orders', getOrders)
 router.delete('/api/orders/:id', deleteOrders)
 router.get("/api/orders/user", authenticateToken,getUserOrders);
+router.delete("/api/orders/:id", authenticateToken, cancelOrder);
 
 export default router

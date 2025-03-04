@@ -10,6 +10,7 @@
           <th class="border px-4 py-2">User</th>
           <th class="border px-4 py-2">Email</th>
           <th class="border px-4 py-2">Product</th>
+          <th class="border px-4 py-2">Address</th>
           <th class="border px-4 py-2">Image</th>
           <th class="border px-4 py-2">Quantity</th>
           <th class="border px-4 py-2">Date</th>
@@ -26,6 +27,26 @@
                 {{ item.name }} - x{{ item.quantity }}
               </li>
             </ul>
+          </td>
+          <td class="border px-4 py-2">
+            <p v-if="order.shipping_address">
+              <span v-if="order.shipping_address.fullName && order.shipping_address.fullName.trim()">
+                {{ order.shipping_address.fullName.trim() }},
+              </span>
+              <span v-if="order.shipping_address.address && order.shipping_address.address.trim()">
+                {{ order.shipping_address.address.trim() }},
+              </span>
+              <span v-if="order.shipping_address.city && order.shipping_address.city.trim()">
+                {{ order.shipping_address.city.trim() }},
+              </span>
+              <span v-if="order.shipping_address.zipCode && order.shipping_address.zipCode.trim()">
+                {{ order.shipping_address.zipCode.trim() }},
+              </span>
+              <span v-if="order.shipping_address.country && order.shipping_address.country.trim()">
+                {{ order.shipping_address.country.trim() }}
+              </span>
+            </p>
+            <p v-else>No Address Provided</p>
           </td>
           <td class="border px-4 py-2">
             <ul>
@@ -59,7 +80,18 @@ export default {
         const response = await fetch("http://localhost:3000/api/orders");
         const data = await response.json();
         console.log("Fetched orders", data);
-        this.orders = data;
+        this.orders = data.map(order => {
+          if (order.shipping_address) {
+            try {
+              order.shipping_address = JSON.parse(order.shipping_address);
+            } catch (error) {
+              console.error("Error parsing shipping_address:", error);
+              // Handle parsing error (e.g., set shipping_address to null or an empty object)
+              order.shipping_address = null;
+            }
+          }
+          return order;
+        });
       } catch (error) {
         console.error("Error fetching orders:", error);
       } finally {

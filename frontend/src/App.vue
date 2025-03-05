@@ -56,7 +56,9 @@ export default {
         path.startsWith("/AdminEditProducts") ||
          path.startsWith("/OrdersPage")
          ||
-         path.startsWith("/AddNewAdmin");
+
+         path.startsWith("/AddNewAdmin") ||
+         path.startsWith("/Mail")
 
         
 

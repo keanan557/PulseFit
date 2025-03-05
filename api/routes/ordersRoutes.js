@@ -1,7 +1,7 @@
 // orders routes
 
-import { addToOrders,getOrders,deleteOrders,getUserOrders,authenticateToken,cancelOrder } from '../controller/ordersController.js';
-
+import { addToOrders,getOrders,deleteOrders,getUserOrders,cancelOrder } from '../controller/ordersController.js';
+import { authenticateToken } from '../middleware/authToken.js';
 import express from 'express'
 
 const router = express.Router()

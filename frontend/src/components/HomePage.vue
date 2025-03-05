@@ -35,6 +35,19 @@
       </div>
     </section>
 
+    <!-- bmi calculator -->
+     <h1>Check your BMI!</h1>
+    <div>
+      <label>Enter Height in cm: </label>
+      <input type="number" v-model="height">
+      <br>
+      <label>Enter Weight in kg: </label>
+      <input type="number" v-model="weight"><br>
+      <button @click="calculateBMI">Calculate BMI</button>
+
+      <p v-if="bmi">Your BMI: {{ bmi }}</p>
+    </div>
+
     <!-- Featured Products Section -->
     <section class="featured-products" id="products">
       <h2 id="next">Featured Gym Equipment</h2>
@@ -56,7 +69,32 @@
 </template>
 
 <script>
+import {ref} from 'vue'
+
 export default {
+  setup(){
+    const height = ref(0);
+    const weight = ref(0);
+    const bmi = ref(null);
+
+    const calculateBMI = () => {
+      if (height.value > 0 && weight.value > 0) {
+        const heightInMeters = height.value / 100;
+        const calculatedBMI = weight.value / (heightInMeters * heightInMeters);
+        bmi.value = calculatedBMI.toFixed(2); // Round to 2 decimal places
+      } else {
+        alert('Please enter valid height and weight.');
+        bmi.value = null; // Reset BMI if input is invalid
+      }
+  }
+
+  return {
+      height,
+      weight,
+      bmi,
+      calculateBMI,
+    };
+},
   data() {
     return {
       categories: [

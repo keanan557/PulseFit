@@ -256,6 +256,7 @@ export default {
 const clearCart = () =>{
   store.commit('clearCart')
   localStorage.removeItem('cart')
+  showCheckout.value = false
 }
 
 

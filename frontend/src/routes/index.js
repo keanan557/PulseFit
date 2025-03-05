@@ -14,6 +14,7 @@ import AddNewAdmin from '@/components/AddNewAdmin.vue'
 import ForgotPassword from '@/components/ForgotPassword.vue'
 import DeleteUserAccount from '@/components/DeleteUserAccount.vue'
 import CustomerProfile from '@/components/CustomerProfile.vue'
+import ContactPage from '@/components/ContactPage.vue'
 
 const routes = [
   {
@@ -72,6 +73,10 @@ const routes = [
   {
     path: '/MyProfile',
     component: CustomerProfile
+  },
+  {
+    path: '/ContactUs',
+    component: ContactPage
   }
   
 

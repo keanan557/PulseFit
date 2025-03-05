@@ -14,6 +14,7 @@
         </svg>
         <span class="cart-badge">{{ cartItemCount }}</span>
       </router-link> |
+      <router-link to="/ContactUs">Get in touch</router-link>  |  
       <router-link to="/Login">Login</router-link>  |
       <router-link to="/MyProfile">My Profile</router-link>
       <router-link to="/AdminLogin">

@@ -15,6 +15,7 @@ import ForgotPassword from '@/components/ForgotPassword.vue'
 import DeleteUserAccount from '@/components/DeleteUserAccount.vue'
 import CustomerProfile from '@/components/CustomerProfile.vue'
 import ContactPage from '@/components/ContactPage.vue'
+import ViewMail from '@/components/ViewMail.vue'
 
 const routes = [
   {
@@ -77,6 +78,11 @@ const routes = [
   {
     path: '/ContactUs',
     component: ContactPage
+  },
+
+  {
+    path: '/Mail',
+    component: ViewMail
   }
   
 

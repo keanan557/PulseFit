@@ -36,18 +36,19 @@
     </section>
 
     <!-- bmi calculator -->
+     <div class="main">
      <h1>Check your BMI!</h1>
-    <div>
+    <div class="bmi-contain">
       <label>Enter Height in cm: </label>
       <input type="number" v-model="height">
       <br>
       <label>Enter Weight in kg: </label>
       <input type="number" v-model="weight"><br>
-      <button @click="calculateBMI">Calculate BMI</button>
+      <button @click="calculateBMI" class="bmi-btn">Calculate BMI</button>
 
       <p v-if="bmi">Your BMI: {{ bmi }}</p>
     </div>
-
+</div>
     <!-- Featured Products Section -->
     <section class="featured-products" id="products">
       <h2 id="next">Featured Gym Equipment</h2>
@@ -161,6 +162,33 @@ export default {
 </script>
 
 <style scoped>
+/* bmi styles */
+.bmi-btn{
+  background-color: red;
+  color: white;
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bmi-contain{
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
+
+.bmi-contain input{
+  height: 20px;
+}
 /* Home Page Global Styles */
 .home-page {
   font-family: Arial, sans-serif;

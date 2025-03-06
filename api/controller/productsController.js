@@ -74,3 +74,23 @@ export  const fetchProducts =async (req, res) => {
   }
 }
 
+// get products by id
+
+
+export const getProductById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      let products = await productModel.getProductById(id);
+      if (!products || products.length === 0) { // Corrected line
+          return res.status(404).json({ message: "Product not found" });
+      }
+
+      res.json(products[0]); // Corrected line
+  } catch (error) {
+      console.error("Error fetching product:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+

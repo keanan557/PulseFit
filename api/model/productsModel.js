@@ -34,6 +34,12 @@ export const updateProduct = async(name, description, price, image, quantity, id
     return await pool.execute(query, [name, description, price, image, quantity, id]);
 }
 
+// get product by id
+export const getProductById = async(id)=>{
+    const [product] = await pool.query("SELECT * FROM products WHERE product_id = ?", [id]);
+    return product
+}
+
   
   
   

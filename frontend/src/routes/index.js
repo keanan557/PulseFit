@@ -16,6 +16,8 @@ import DeleteUserAccount from '@/components/DeleteUserAccount.vue'
 import CustomerProfile from '@/components/CustomerProfile.vue'
 import ContactPage from '@/components/ContactPage.vue'
 import ViewMail from '@/components/ViewMail.vue'
+// import ProductDetails from '@/components/ProductDetails.vue'
+import ProductDetails from '@/components/ProductDetails.vue'
 
 const routes = [
   {
@@ -83,6 +85,10 @@ const routes = [
   {
     path: '/Mail',
     component: ViewMail
+  },
+  {
+    path: '/ProductDetails',
+    component: ProductDetails
   }
   
 

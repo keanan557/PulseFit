@@ -6,6 +6,24 @@ export const getAllReviews = async () => {
   return rows;
 };
 
+// get reviews for product
+export const getReviewsForProduct = async (product_id) => {
+  try {
+    const [rows] = await pool.query(`
+SELECT review_id,product_id,rating,comment, users.name
+FROM reviews
+INNER JOIN users
+ON reviews.user_id = users.user_id
+      WHERE product_id = ?;
+    `, [product_id]);
+    console.log("Fetched Reviews:", rows); // Debugging
+    return rows;
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    throw error;
+  }
+};
+
 // Get review by ID
 export const getReviewById = async (id) => {
   const [rows] = await pool.query('SELECT * FROM Reviews WHERE review_id = ?', [id]);

@@ -7,19 +7,17 @@
     <p><strong>Description:</strong> {{ product.description }}</p>
     <p><strong>Category:</strong> {{ product.category }}</p> -->
     <h2>Reviews for this Product</h2>
-
     <div v-if="productReviews.length > 0">
       <div v-for="review in productReviews" :key="review.review_id">
         <p><strong>Rating:</strong> {{ review.rating }}</p>
         <p><strong>Comment:</strong> {{ review.comment }}</p>
-        <p><strong>User ID:</strong> {{ review.user_id }}</p>
+        <p><strong>User:</strong> {{ review.name}} </p>
         <hr>
       </div>
     </div>
     <div v-else>
       <p>No reviews yet for this product.</p>
     </div>
-
     <h2>Add a Review</h2>
     <form @submit.prevent="addReview">
       <label for="rating">Rating:</label>
@@ -30,10 +28,8 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-
       <label for="comment">Comment:</label>
       <textarea id="comment" v-model="newReview.comment" required></textarea>
-
       <button type="submit">Submit Review</button>
     </form>
   </div>
@@ -41,10 +37,8 @@
     <p>Product not found.</p>
   </div>
 </template>
-
 <script>
 import { ref, onMounted } from 'vue';
-
 export default {
   props: {
     productId: {
@@ -61,18 +55,15 @@ export default {
       rating: 5,
       comment: '',
     });
-
     onMounted(async () => {
       try {
         const productResponse = await fetch(`http://localhost:3000/api/products/${props.productId}`);
         if (productResponse.ok) {
           product.value = await productResponse.json();
-          
         } else {
           product.value = null;
         }
-        
-        const productReviewsResponse = await fetch(`http://localhost:3000/api/reviews?product_id=${props.productId}`);
+        const productReviewsResponse = await fetch(`http://localhost:3000/api/reviews/product?product_id=${props.productId}`);
         if (productReviewsResponse.ok) {
           productReviews.value = await productReviewsResponse.json();
           console.log(productReviews.value);
@@ -87,7 +78,6 @@ export default {
         loading.value = false;
       }
     });
-
     const addReview = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/reviews', {
@@ -102,7 +92,6 @@ export default {
             comment: newReview.value.comment,
           }),
         });
-
         if (response.ok) {
           const addedReview = await response.json();
           productReviews.value.push(addedReview);
@@ -116,7 +105,6 @@ export default {
         alert('An error occurred while adding the review.');
       }
     };
-
     return {
       product,
       productReviews,
@@ -127,7 +115,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 /* Add your styling here */
 </style>

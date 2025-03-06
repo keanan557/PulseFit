@@ -24,10 +24,10 @@
           <h3>Orders</h3>
           <p>120 Orders Pending</p>
         </div>
-        <div class="dashboard-card">
+        <!-- <div class="dashboard-card">
           <h3>Customers</h3>
           <p>350 Registered Customers</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Containers for displaying Orders and Customers tables side by side -->
@@ -55,7 +55,7 @@
           </table>
         </div>
 
-        <!-- Customers Management Section -->
+        <!-- Customers Management Section
         <div class="customers-management">
           <h2>Customer Management</h2>
           <table class="customers-table">
@@ -77,7 +77,7 @@
             </tbody>
           </table>
         </div>
-      </div>
+      </div> -->
 
       <!-- Modal for Viewing/Editing Orders -->
       <div v-if="showOrderModal" class="modal">
@@ -117,6 +117,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -169,13 +170,13 @@ export default {
           this.orders = data;
         });
     },
-    fetchCustomers() {
-      fetch('http://localhost:3000/api/customers')
-        .then((response) => response.json())
-        .then((data) => {
-          this.customers = data;
-        });
-    },
+    // fetchCustomers() {
+    //   fetch('http://localhost:3000/api/customers')
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       this.customers = data;
+    //     });
+    // },
     viewOrder(order) {
       this.order = { ...order };
       this.isOrderEditing = false;
@@ -209,38 +210,38 @@ export default {
     closeOrderModal() {
       this.showOrderModal = false;
     },
-    viewCustomer(customer) {
-      this.customer = { ...customer };
-      this.isCustomerEditing = false;
-      this.showCustomerModal = true;
-    },
-    deleteCustomer(id) {
-      fetch(`http://localhost:3000/api/customers/${id}`, { method: 'DELETE' }).then(() => {
-        this.fetchCustomers();
-      });
-    },
-    saveCustomer() {
-      const method = this.isCustomerEditing ? 'PATCH' : 'POST';
-      const url = this.isCustomerEditing
-        ? `http://localhost:3000/api/customers/${this.customer.customer_id}`
-        : 'http://localhost:3000/api/customers';
+    // viewCustomer(customer) {
+    //   this.customer = { ...customer };
+    //   this.isCustomerEditing = false;
+    //   this.showCustomerModal = true;
+    // },
+    // deleteCustomer(id) {
+    //   fetch(`http://localhost:3000/api/customers/${id}`, { method: 'DELETE' }).then(() => {
+    //     this.fetchCustomers();
+    //   });
+    // },
+    // saveCustomer() {
+    //   const method = this.isCustomerEditing ? 'PATCH' : 'POST';
+    //   const url = this.isCustomerEditing
+    //     ? `http://localhost:3000/api/customers/${this.customer.customer_id}`
+    //     : 'http://localhost:3000/api/customers';
 
-      fetch(url, {
-        method: method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.customer),
-      }).then(() => {
-        this.fetchCustomers();
-        this.closeCustomerModal();
-      });
-    },
-    closeCustomerModal() {
-      this.showCustomerModal = false;
-    },
+    //   fetch(url, {
+    //     method: method,
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(this.customer),
+    //   }).then(() => {
+    //     this.fetchCustomers();
+    //     this.closeCustomerModal();
+    //   });
+    // },
+    // closeCustomerModal() {
+    //   this.showCustomerModal = false;
+    // },
   },
   mounted() {
     this.fetchOrders();
-    this.fetchCustomers();
+    // this.fetchCustomers();
   },
 };
 </script>

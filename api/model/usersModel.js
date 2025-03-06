@@ -44,3 +44,18 @@ export const checkIfUser = async(email)=>{
     return result
   }
 
+// get user by id
+export const findById = async (userId) => {
+    try {
+        const [rows] = await pool.query('SELECT * FROM users WHERE user_id = ?', [userId]);
+
+        if (rows.length === 0) {
+            return null; // User not found
+        }
+
+        return rows[0]; // Return the first (and only) row
+    } catch (error) {
+        console.error('Error finding user by ID:', error);
+        throw error; // Or return an appropriate error response
+    }
+};

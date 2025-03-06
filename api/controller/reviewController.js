@@ -13,8 +13,8 @@ export const getReviews = async (req, res) => {
 // Get review by ID
 export const getReviewById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const review = await reviewModel.getReviewById(id);
+    const { product_id } = req.params;
+    const review = await reviewModel.getReviewsForProduct(product_id);
     if (!review) {
       return res.status(404).json({ error: 'Review not found' });
     }

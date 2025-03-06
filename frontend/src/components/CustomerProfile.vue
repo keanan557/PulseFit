@@ -110,6 +110,10 @@ export default {
 
     const cancelOrder = async () => {
       try {
+        console.log("Order ID to cancel:", orderIdToCancel.value);
+        console.log("Token:", token.value);
+
+        
         const response = await fetch(
           `http://localhost:3000/api/orders/${orderIdToCancel.value}`,
           {

@@ -42,14 +42,14 @@
           <span v-else>Login</span>
         </button>
       </form>
-      <div class="register-link text-center">
+      <div class="text-center">
         <p>
           Don't have an account?
-          <router-link to="/register" class="text-blue-600 hover:underline">
+          <router-link to="/register" class="register-link">
             Register
           </router-link>
         </p>
-        <router-link to="/deleteaccount">Delete my account</router-link>
+        <router-link to="/deleteaccount" class="delete-link">Delete my account</router-link>
       </div>
     </div>
   </div>
@@ -220,11 +220,36 @@ export default {
 
 .forgot-link {
   color: white;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  color: white;
   text-decoration: underline;
 }
 
 .register-link {
   margin-top: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.register-link:hover {
+  margin-top: 15px;
+  color: white;
+  text-decoration: underline;
+}
+
+.delete-link{
+  margin-top: 15px;
+  color: white;
+  text-decoration: none;
+}
+
+.delete-link:hover{
+  margin-top: 15px;
+  color: white;
+  text-decoration: underline;
 }
 
 .text-center {

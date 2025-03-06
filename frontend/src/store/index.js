@@ -11,8 +11,16 @@ export default createStore({
     },
     mutations:{
         setUser(state, user){
-            state.user = user ? {name:localStorage.getItem("userName"),email: localStorage.getItem("userEmail")} : null;
+            if(user){
+              state.user = {
+                name: user.name,
+                email: user.email
+              }
+            }else{
+                state.user = null
+            }
         },
+        
         set_products(state, products){
             state.products = products
         },

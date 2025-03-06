@@ -74,22 +74,15 @@ userName() {
 
 
   },
-  watch: {
-    isLoggedIn(newValue) {
-      if (newValue) {
-        this.showWelcomeMessage = true;
-        setTimeout(() => {
-          this.showWelcomeMessage = false;
-        }, 10000); // Hide after 10 seconds
-      }
-    }
-  },
+  
+  
   methods: {
     logout() {
       // Clear localStorage and Vuex state
       localStorage.removeItem("authToken");
       localStorage.removeItem("userName");
       this.$store.commit("setUser", null);
+      this.$forceUpdate()
       // Optionally redirect to login
       this.$router.push("/login");
     }

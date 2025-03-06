@@ -38,7 +38,9 @@ export default {
       this.isMenuOpen = !this.isMenuOpen;
     },
     logout() {
-      localStorage.removeItem("authToken");
+      // localStorage.removeItem("authToken");
+      this.$store.dispatch('logout')
+
       this.$router.push("/AdminLogin");
     }
   }

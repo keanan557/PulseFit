@@ -55,23 +55,23 @@
         <h3>Shipping Address</h3>
         <form @submit.prevent="submitShippingAddress">
           <div class="form-group">
-            <label for="fullName">Full Name</label>
+            <label for="fullName">Full Name:</label>
             <input type="text" id="fullName" v-model="shippingAddress.fullName" required />
           </div>
           <div class="form-group">
-            <label for="address">Address</label>
+            <label for="address">Address:</label>
             <input type="text" id="address" v-model="shippingAddress.address" required />
           </div>
           <div class="form-group">
-            <label for="city">City</label>
+            <label for="city">City:</label>
             <input type="text" id="city" v-model="shippingAddress.city" required />
           </div>
           <div class="form-group">
-            <label for="zipCode">Zip Code</label>
+            <label for="zipCode">Zip Code:</label>
             <input type="text" id="zipCode" v-model="shippingAddress.zipCode" required />
           </div>
           <div class="form-group">
-            <label for="country">Country</label>
+            <label for="country">Country:</label>
             <input type="text" id="country" v-model="shippingAddress.country" required />
           </div>
           <button type="submit" class="submit-button">Save Shipping Address</button>
@@ -383,6 +383,19 @@ const clearCart = () =>{
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.shipping-address form{
+  /* border: 1px solid red; */
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 h3 {

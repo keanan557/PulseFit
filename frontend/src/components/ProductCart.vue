@@ -370,10 +370,11 @@ const clearCart = () =>{
   background: red;
   color: white;
   border: none;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   cursor: pointer;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 30px;
+  height: 30px;
 }
 
 .checkout-container {
@@ -385,5 +386,15 @@ const clearCart = () =>{
 
 h3 {
   color: red;
+}
+
+.clear-cart-button{
+  background-color: red;
+  color:white;
+  border-radius: 30px;
+  width: 100%;
+  margin-top: 10px;
+  height: 30px;
+  cursor: pointer;
 }
 </style>

@@ -56,24 +56,33 @@ export default {
         path.startsWith("/AdminEditProducts") ||
          path.startsWith("/OrdersPage")
          ||
-
          path.startsWith("/AddNewAdmin") ||
          path.startsWith("/Mail")
-
-        
-
     },
     ...mapGetters(['cartItemCount']),
     isLoggedIn() {
-  return !!this.$store.state.user;
-},
+      console.log("isLoggedIn:", !!this.$store.state.user);
+    return !!this.$store.state.user;
+  },
 userName() {
   return this.$store.state.user ? this.$store.state.user.name : '';
 },
-
-
-
   },
+  watch: {
+    isLoggedIn(newValue) {
+      if (newValue) {
+        setTimeout(() => {
+          // this.showWelcomeMessage = false;
+          this.$store.state.user = false
+        }, 5000);
+      } else {
+        // this.showWelcomeMessage = true;
+        this.$store.state.user = true
+      }
+    },
+  },
+
+
   
   
   methods: {
@@ -82,7 +91,7 @@ userName() {
       localStorage.removeItem("authToken");
       localStorage.removeItem("userName");
       this.$store.commit("setUser", null);
-      this.$forceUpdate()
+      // this.$forceUpdate()
       // Optionally redirect to login
       this.$router.push("/login");
     }

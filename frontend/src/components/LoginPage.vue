@@ -99,9 +99,21 @@ export default {
           localStorage.setItem("userName", data.name); // if backend sends name
           console.log("User ID from login response:", data.user_id)
           localStorage.setItem("userId", data.user_id)
-          store.commit("setUser", data.name); // Update Vuex state if you have this mutation
+          store.commit("setUser", {
+            id: data.user_id,
+            name: data.name,
+            email: data.email
+          }); // Update Vuex state if you have this mutation
           message.value = "Login successful!";
           success.value = true;
+
+
+          setTimeout(() => {
+                message.value = "";
+                success.value = false;
+            }, 5000);
+
+
           setTimeout(() => router.push("/"), 1500);
         } else {
           message.value = data.error || "Login failed.";

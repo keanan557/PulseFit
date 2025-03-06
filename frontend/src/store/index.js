@@ -11,17 +11,12 @@ export default createStore({
     },
     mutations:{
         setUser(state, user){
-            if(user){
-              state.user = {
-                name: user.name,
-                email: user.email
-              }
-            }else{
-                state.user = null
-            }
+          console.log("setUser Mutation Called:", user);
+            state.user = user
         },
         
         set_products(state, products){
+          
             state.products = products
         },
         add_to_cart(state, product) {
@@ -75,12 +70,19 @@ export default createStore({
         removeFromCart({ commit }, id) {
             commit('remove_from_cart', id);
         },
-        login({commit}, {token, user}){
-            localStorage.setItem("authToken", token);
+        login({commit}, response){
+          console.log("Login response:", response);
+          const user = {
+            id: response.user_id,
+            name: response.name,
+            email: response.email,
+        }
+            localStorage.setItem("authToken", response.token);
             localStorage.setItem("userId", user.id)
             localStorage.setItem("userName", user.name);
             localStorage.setItem("userEmail", user.email)
             commit('setUser', user)
+            console.log("setUser Commit Called:", user)
         },
         logout({commit}){
             localStorage.removeItem("authToken")

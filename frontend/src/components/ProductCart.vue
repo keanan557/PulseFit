@@ -138,6 +138,7 @@ export default {
     // redirect login if not login
     const proceedToCheckout = () =>{
       console.log("Current user", user.value);
+      console.log("user.value.name", user.value?.name);
       console.log(user);
       // store.commit('setUser','user')
       

@@ -108,10 +108,7 @@ export default {
           success.value = true;
 
 
-          setTimeout(() => {
-                message.value = "";
-                success.value = false;
-            }, 5000);
+         
 
 
           setTimeout(() => router.push("/"), 1500);

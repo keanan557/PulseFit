@@ -65,22 +65,12 @@ export default {
     return !!this.$store.state.user;
   },
 userName() {
+  console.log("userName:", this.$store.state.user ?this.$store.state.user.name : '');
+  
   return this.$store.state.user ? this.$store.state.user.name : '';
 },
   },
-  watch: {
-    isLoggedIn(newValue) {
-      if (newValue) {
-        setTimeout(() => {
-          // this.showWelcomeMessage = false;
-          this.$store.state.user = false
-        }, 5000);
-      } else {
-        // this.showWelcomeMessage = true;
-        this.$store.state.user = true
-      }
-    },
-  },
+  
 
 
   

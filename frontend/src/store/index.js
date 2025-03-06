@@ -10,10 +10,11 @@ export default createStore({
         // : null
     },
     mutations:{
-        setUser(state, user){
-          console.log("setUser Mutation Called:", user);
-            state.user = user
-        },
+      setUser(state, user) {
+        console.log("setUser Mutation Called:", user);
+        console.trace(); // Add this line
+        state.user = user;
+    },
         
         set_products(state, products){
           

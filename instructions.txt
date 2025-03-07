@@ -1,3 +1,4 @@
 1. clone or download zip of repo.
 2. cd frontend and backend then install node modules.
-3. npm run serve for frontend and node --watch index.js for api.
+3. Change password in db to your own.
+4. npm run serve for frontend and node --watch index.js for api.

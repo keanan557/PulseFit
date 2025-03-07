@@ -201,8 +201,9 @@
 
 .edit-button,
 .save-button {
-  background-color: #4caf50;
-  color: white;
+  background-color: white;
+  color: black;
+  border: 1px solid red;
 }
 
 .remove-button,

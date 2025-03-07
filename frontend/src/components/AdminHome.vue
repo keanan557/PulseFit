@@ -296,8 +296,9 @@ export default {
 }
 
 .process-btn {
-  background-color: #4CAF50;
-  color: white;
+  background-color: white;
+  color: black;
+  border: 1px solid red;
 }
 
 .delete-btn {

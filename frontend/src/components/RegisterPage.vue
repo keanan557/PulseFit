@@ -6,6 +6,7 @@
           Already have an account?
           <router-link to="/login" class="text-blue-600 hover:underline">Log in</router-link>
         </p>
+        <!-- register form -->
         <form @submit.prevent="handleSubmit" class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-gray-700">Full Name</label>
@@ -52,12 +53,14 @@
   </template>
   
   <script>
+  // imports
   import { ref, reactive } from "vue";
   import { useRouter } from "vue-router";
   
   export default {
     name: "RegisterPage",
     setup() {
+      // variables
       const router = useRouter();
       const showPassword = ref(false);
       const error = ref("");
@@ -69,7 +72,7 @@
         password: "",
         confirmPassword: "",
       });
-  
+      // methods
       const togglePassword = () => {
         showPassword.value = !showPassword.value;
       };
@@ -128,6 +131,7 @@
   </script>
   
   <style scoped>
+  /* css */
 .input-field {
   width: 90%;
   padding: 10px 16px;

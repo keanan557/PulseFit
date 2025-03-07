@@ -4,6 +4,7 @@
     <div class="user-info">
     </div>
   </div>
+  <!-- mails -->
   <div class="container">
     <div v-if="loading" class="loading">Loading...</div>
     <div v-else-if="mail.length === 0" class="no-mail">No mail found.</div>
@@ -21,6 +22,7 @@
   </div>
 </template>
 <script>
+// imports
 import { ref, onMounted } from 'vue';
 export default {
   setup() {
@@ -67,6 +69,7 @@ export default {
 };
 </script>
 <style scoped>
+/* css */
 body {
   background-color: #121212;
   color: white;

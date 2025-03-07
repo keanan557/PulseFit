@@ -6,6 +6,7 @@
       <div class="user-info">
       </div>
     </div>
+    <!-- order table -->
     <h2 class="text-xl font-bold">Orders List</h2>
     <div v-if="loading">Loading...</div>
     <div v-else-if="orders.length === 0">No orders found.</div>
@@ -63,6 +64,7 @@
   </div>
 </template>
 <script>
+// import jwt
 import jwtDecode from 'jwt-decode';
 export default {
   data() {
@@ -73,6 +75,7 @@ export default {
     };
   },
   created() {
+    // get token
     const token = localStorage.getItem('authToken');
     if (token) {
       try {
@@ -88,7 +91,9 @@ export default {
   mounted() {
     this.fetchOrders();
   },
+  // methods
   methods: {
+    // api
     async fetchOrders() {
       try {
         const response = await fetch("http://localhost:3000/api/orders");
@@ -118,6 +123,7 @@ export default {
 };
 </script>
 <style scoped>
+/* styles */
 .admin-container {
   padding: 20px;
 }

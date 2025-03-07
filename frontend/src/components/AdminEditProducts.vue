@@ -1,6 +1,7 @@
 <template>
   <div class="product-container">
     <div>
+      <!-- product table -->
       <h1 class="product-title">Product List</h1>
       <table class="product-table">
         <thead>
@@ -15,6 +16,7 @@
           </tr>
         </thead>
         <tbody>
+          <!-- loops and updates products -->
           <tr v-for="product in products" :key="product.product_id">
             <td>{{ product.product_id }}</td>
             <td class="product-name">{{ product.name }}</td>
@@ -73,6 +75,7 @@ export default {
       product: { product_id: '', name: '', description: '', price: '', image: '', quantity: '' },
     };
   },
+  // fetch,edit,update,delete methods
   methods: {
     async fetchProducts() {
       const response = await fetch('http://localhost:3000/api/products');
@@ -121,6 +124,7 @@ export default {
 </script>
 
 <style scoped>
+/* styles */
 .product-container {
   background-color: #fff;
   color: #000;

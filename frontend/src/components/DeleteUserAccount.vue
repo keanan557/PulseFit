@@ -1,19 +1,27 @@
 <template>
     <div class="container">
+
       <h1>Delete My Account</h1>
       <label>Enter your email:</label>
+
+      <!-- input -->
       <input type="email" v-model="email" placeholder="Your email" class="input-field">
       <p v-if="message" class="message">{{ message }}</p>
       <button @click="confirmDelete" class="delete-btn">Delete my account</button>
       <div v-if="showModal" class="modal-overlay">
+
+        <!-- delete modal -->
         <div class="modal-content">
           <p>Are you sure you want to delete your account?</p>
           <button @click="deleteAccount" class="confirm-btn">Yes</button>
           <button @click="showModal = false" class="cancel-btn">No</button>
         </div>
+
       </div>
     </div>
   </template>
+
+
   <script>
   import { ref } from "vue";
   export default {
@@ -21,6 +29,8 @@
       const email = ref("");
       const showModal = ref(false);
       const message = ref("");
+
+      // methods and fetch api
       const confirmDelete = () => {
         message.value = "";
         if (!email.value) {
@@ -49,7 +59,9 @@
     }
   };
   </script>
+
   <style>
+  /* styles */
   body {
     background: linear-gradient(to right, red, black);
   }

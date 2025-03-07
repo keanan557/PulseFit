@@ -1,7 +1,9 @@
 <template>
+  <!-- user name display -->
   <div class="customer-profile">
     <h1>{{ username }}'s Profile</h1>
     <br>
+    <!-- users orders -->
     <h2>My Orders</h2>
     <div v-if="loading">Loading...</div>
     <div v-else-if="userOrders.length === 0">No orders found</div>
@@ -16,6 +18,7 @@
         </tr>
       </thead>
       <tbody>
+        <!-- loops and updates user orders -->
         <tr v-for="order in userOrders" :key="order.order_id">
           <td>{{ order.user_name }}</td>
           <td>{{ order.order_id }}</td>
@@ -31,6 +34,8 @@
         </tr>
       </tbody>
     </table>
+
+    <!-- cencel model -->
     <div class="cancel-order-model" v-if="showCancelModal">
       <h3>Are you sure you want to cancel your order?</h3>
       <button @click="cancelOrder">Yes</button>
@@ -84,6 +89,7 @@ export default {
     };
     const cancelOrder = async () => {
       try {
+        // fetch api
         const response = await fetch(
           `http://localhost:3000/api/orders/${orderIdToCancel.value}`,
           {
@@ -108,6 +114,8 @@ export default {
         showCancelModal.value = false;
       }
     };
+
+    // variables
     return {
       username,
       userOrders,

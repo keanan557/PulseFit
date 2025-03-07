@@ -16,13 +16,21 @@
     </section>
     <!-- Categories Section -->
     <section class="equipment-categories" id="categories">
+
+
       <h2>Browse Our Equipment</h2>
+
+
       <div class="category-grid">
+
+
         <div class="category-card" v-for="category in categories" :key="category.id">
           <img :src="category.image" :alt="category.name" class="category-image" />
           <h3>{{ category.name }}</h3>
           <p>{{ category.description }}</p>
         </div>
+
+
       </div>
       <!-- New Button to Navigate to Products Page -->
       <div class="view-products-button">
@@ -368,4 +376,22 @@ footer a {
 footer a:hover {
   color: #E60000; /* Red on hover */
 }
+
+@media(max-width:768px){
+  .category-grid{
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-grid{
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
 </style>

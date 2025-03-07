@@ -1,6 +1,7 @@
 <template>
   <div class="background">
     <h1>Add New Product</h1>
+    <!-- add product form -->
     <form @submit.prevent="submitProduct">
       <label>Name: </label>
       <input type="text" v-model="name" required />
@@ -39,6 +40,7 @@ export default {
     };
   },
   methods: {
+    // add product method
     async submitProduct() {
       if (!this.name || !this.description || !this.price || !this.imageUrl) {
         alert("Please fill all fields and provide an image URL");
@@ -54,6 +56,7 @@ export default {
       };
 
       try {
+        // fetch api
         const response = await fetch("http://localhost:3000/api/products", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -72,6 +75,7 @@ export default {
           alert("Error: " + result.error);
         }
       } catch (error) {
+        // catch error
         console.error("Error adding product:", error);
         alert("An error occurred. Please try again.");
       }

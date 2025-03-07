@@ -52,6 +52,7 @@ export default createStore({
 
 
     },
+    // actions 
     actions:{
         async fetchProducts({commit}){
             try {
@@ -78,6 +79,7 @@ export default createStore({
             name: response.name,
             email: response.email,
         }
+        //add
             localStorage.setItem("authToken", response.token);
             localStorage.setItem("userId", user.id)
             localStorage.setItem("userName", user.name);
@@ -85,6 +87,7 @@ export default createStore({
             commit('setUser', user)
             console.log("setUser Commit Called:", user)
         },
+        // clear
         logout({commit}){
             localStorage.removeItem("authToken")
             localStorage.removeItem("userId")

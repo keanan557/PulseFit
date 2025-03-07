@@ -1,4 +1,5 @@
 <template>
+  <!-- contact form -->
   <div class="contact-container">
     <h1>Contact Us</h1>
 
@@ -20,6 +21,7 @@
       <div v-if="errors.message" class="error">{{ errors.message }}</div>
     </div>
 
+    <!-- sendContact function -->
     <button @click="sendContact" class="send-button">Send</button>
   </div>
 </template>
@@ -29,11 +31,13 @@ import { ref } from 'vue';
 
 export default {
   setup() {
+    // variables
     const name = ref('');
     const email = ref('');
     const message = ref('');
     const errors = ref({});
 
+    // sends contact details
     const sendContact = async () => {
       errors.value = {};
 
@@ -53,6 +57,7 @@ export default {
         return;
       }
 
+      // api 
       try {
         const response = await fetch('http://localhost:3000/api/contact', {
           method: 'POST',
@@ -61,7 +66,7 @@ export default {
           },
           body: JSON.stringify({ name: name.value, email: email.value, message: message.value }),
         });
-
+        // response 
         if (response.ok) {
           alert('Message sent successfully!');
           name.value = '';
@@ -71,10 +76,13 @@ export default {
           alert('Failed to send message. Please try again.');
         }
       } catch (error) {
+        // catch error
         console.error('Error sending message:', error);
         alert('An error occurred while sending the message. Please check your network connection.');
       }
     };
+
+    // return variables and send contact
 
     return {
       name,
@@ -88,6 +96,7 @@ export default {
 </script>
 
 <style scoped>
+/* styles */
 .contact-container {
   width: 80%;
   max-width: 600px;

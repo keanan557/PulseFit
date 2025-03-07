@@ -20,6 +20,7 @@ import { ref } from 'vue';
 export default {
     name: 'ForgotPassword',
     setup() {
+        // variables for input and state
         const email = ref('');
         const newPassword = ref('');
         const confirmPassword = ref('');
@@ -27,12 +28,16 @@ export default {
         const message = ref('');
         const error = ref(false);
         const success = ref(false);
+
+        // toggle invisibility
         const toggleModal = () => {
             showModal.value = !showModal.value;
             message.value = '';
             error.value = false;
             success.value = false;
         };
+
+        // reset method
         const resetPassword = async () => {
             if (newPassword.value !== confirmPassword.value) {
                 message.value = 'Passwords do not match';
@@ -84,7 +89,10 @@ export default {
     },
 };
 </script>
+
+
 <style scoped>
+/* styles */
 .forgot-password-container {
     display: flex;
     flex-direction: column;

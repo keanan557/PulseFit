@@ -1,12 +1,15 @@
 <template>
   <div class="product-details-container">
     <div v-if="loading">Loading product details...</div>
+
+    <!-- product info -->
     <div v-else-if="product" class="product-content">
       <div class="product-info">
         <img :src="product.image" alt="Product Image" class="product-image">
         <p class="style"><strong>Price:</strong> R{{ product.price }}</p>
         <p class="style"><strong>Description:</strong> {{ product.description }}</p>
       </div>
+      <!-- reviews container -->
       <div class="reviews-container">
         <h2 class="hs">Reviews for this Product</h2>
         <div v-if="productReviews.length > 0" class="reviews-section">
@@ -22,6 +25,8 @@
         </div>
         <div v-if="isLoggedIn">
           <h2 class="hs">Add a Review</h2>
+
+          <!-- form to add review -->
           <form @submit.prevent="addReview" class="leave-review">
             <label for="rating" class="rating">Rating:</label>
             <select id="rating" v-model="newReview.rating" required>
@@ -48,10 +53,12 @@
 </template>
 
 <script>
+// imports
 import { ref, onMounted, computed } from 'vue';
 import { useStore } from 'vuex';
 
 export default {
+  // props
   props: {
     productId: {
       type: Number,
@@ -71,6 +78,7 @@ export default {
     const store = useStore();
     const isLoggedIn = computed(() => !!store.state.user);
 
+    // fetch api's
     onMounted(async () => {
       try {
         const productResponse = await fetch(`http://localhost:3000/api/products/${props.productId}`);
@@ -95,6 +103,7 @@ export default {
       }
     });
 
+    // add review method
     const addReview = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/reviews', {
@@ -137,6 +146,7 @@ export default {
 </script>
 
 <style scoped>
+/* styles */
 .product-details-container {
   max-width: 1000px;
   margin: 0 auto;

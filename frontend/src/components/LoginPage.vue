@@ -1,6 +1,7 @@
 <template>
   <div class="page-container">
     <div class="wrapper">
+      <!-- login form -->
       <form @submit.prevent="handleLogin" class="space-y-4">
         <h1 class="text-center text-3xl font-extrabold text-gray-900">Login</h1>
         <div class="input-box">
@@ -28,6 +29,7 @@
           <label>
             <input v-model="rememberMe" type="checkbox" /> Remember me
           </label>
+          <!-- forgot password -->
           <router-link to="/forgotpassword" class="forgot-link">Forgot Password?</router-link>
         </div>
         <p
@@ -56,6 +58,7 @@
 </template>
 
 <script>
+// imports
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
@@ -63,6 +66,7 @@ import { useStore } from "vuex";
 export default {
   name: "LoginPage",
   setup() {
+    // variables
     const email = ref("");
     const password = ref("");
     const rememberMe = ref(false);
@@ -75,6 +79,7 @@ export default {
     const router = useRouter();
     const store = useStore();
 
+    // toggle
     const togglePassword = () => {
       showPassword.value = !showPassword.value;
     };
@@ -85,6 +90,7 @@ export default {
       loading.value = true;
 
       try {
+        // fetch api
         const response = await fetch("http://localhost:3000/api/user/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -106,10 +112,6 @@ export default {
           }); // Update Vuex state if you have this mutation
           message.value = "Login successful!";
           success.value = true;
-
-
-         
-
 
           setTimeout(() => router.push("/"), 1500);
         } else {
@@ -140,7 +142,9 @@ export default {
   },
 };
 </script>
+
 <style scoped>
+/* styles */
 .page-container {
   width: 100%;
   height: 100vh;

@@ -1,5 +1,17 @@
 // review Controller
 import * as reviewModel from '../model/reviewModal.js';
+export const getReviewsForProductController = async (req, res) => {
+  const product_id = req.query.product_id; // Correct query parameter name
+  if (!product_id) {
+      return res.status(400).json({ message: 'productId is required' });
+  }
+  try {
+      const reviews = await reviewModel.getReviewsForProduct(product_id);
+      res.status(200).json(reviews);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+};
 // Get all reviews
 export const getReviews = async (req, res) => {
   try {
@@ -13,8 +25,8 @@ export const getReviews = async (req, res) => {
 // Get review by ID
 export const getReviewById = async (req, res) => {
   try {
-    const { product_id } = req.params;
-    const review = await reviewModel.getReviewsForProduct(product_id);
+    const { id } = req.params;
+    const review = await reviewModel.getReviewById(id);
     if (!review) {
       return res.status(404).json({ error: 'Review not found' });
     }

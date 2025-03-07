@@ -1,12 +1,5 @@
 // review modal
 import { pool } from '../config/config.js'; // Adjust the path as needed
-// Get all reviews
-export const getAllReviews = async () => {
-  const [rows] = await pool.query('SELECT * FROM reviews');
-  return rows;
-};
-
-// get reviews for product
 export const getReviewsForProduct = async (product_id) => {
   try {
     const [rows] = await pool.query(`
@@ -23,7 +16,11 @@ ON reviews.user_id = users.user_id
     throw error;
   }
 };
-
+// Get all reviews
+export const getAllReviews = async () => {
+  const [rows] = await pool.query('SELECT * FROM reviews');
+  return rows;
+};
 // Get review by ID
 export const getReviewById = async (id) => {
   const [rows] = await pool.query('SELECT * FROM Reviews WHERE review_id = ?', [id]);

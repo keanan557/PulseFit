@@ -232,7 +232,7 @@ export default {
 }
 
 .header h1{
-  color: black;
+  color: white;
   margin: auto;
 }
 

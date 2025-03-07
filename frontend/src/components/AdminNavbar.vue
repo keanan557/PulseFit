@@ -5,7 +5,7 @@
         <router-link to="/AdminHome" class="nav-link">📊 Dashboard</router-link>
         <router-link to="/AddNewProducts" class="nav-link">➕ Add New Products</router-link>
         <router-link to="/AdminEditProducts" class="nav-link">✏️ Edit Products</router-link>
-        <router-link to="/OrdersPage" class="nav-link">📦 Orders</router-link>
+        <!-- <router-link to="/OrdersPage" class="nav-link">📦 Orders</router-link> -->
         <router-link to="/AddNewAdmin" class="nav-link">👤 Add Admin</router-link>
         <!-- <router-link to="/AddNewAdmin" class="nav-link">👥 Customers</router-link> -->
         <!-- <router-link to="/AddNewAdmin" class="nav-link">⭐ Reviews</router-link> -->

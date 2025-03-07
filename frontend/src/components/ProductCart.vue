@@ -52,10 +52,10 @@
 
       <!-- Shipping Address -->
       <section class="shipping-address">
-        <h3>Shipping Address</h3>
+        <h3 class="shipping-heading">Shipping Address</h3>
         <form @submit.prevent="submitShippingAddress">
           <div class="form-group">
-            <label for="fullName">Full Name:</label>
+            <label for="fullName">Full Name:</label>  
             <input type="text" id="fullName" v-model="shippingAddress.fullName" required />
           </div>
           <div class="form-group">
@@ -396,6 +396,16 @@ const clearCart = () =>{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.shipping-address input{
+  border: 2px solid red;
+  border-radius: 3px;
+}
+
+.shipping-heading{
+  text-align: center;
 }
 
 h3 {

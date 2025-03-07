@@ -1,8 +1,7 @@
 <template>
   <div class="product-container">
-    <div>
-      <!-- product table -->
-      <h1 class="product-title">Product List</h1>
+    <h1 class="product-title">Product List</h1>
+    <div class="table-responsive">
       <table class="product-table">
         <thead>
           <tr>
@@ -16,14 +15,13 @@
           </tr>
         </thead>
         <tbody>
-          <!-- loops and updates products -->
           <tr v-for="product in products" :key="product.product_id">
             <td>{{ product.product_id }}</td>
             <td class="product-name">{{ product.name }}</td>
             <td>{{ product.description }}</td>
             <td class="product-price">{{ product.price }}</td>
             <td>
-                <img :src="product.image" alt="Product Image" class="product-image">
+              <img :src="product.image" alt="Product Image" class="product-image">
             </td>
             <td>{{ product.quantity }}</td>
             <td>
@@ -35,28 +33,21 @@
       </table>
     </div>
 
-    <!-- Modal for Editing -->
     <div v-if="showModal" class="modal">
       <div class="modal-content">
         <h3>Edit Product</h3>
         <label>ID: </label>
         <input type="text" v-model="product.product_id" disabled>
-        <br><br>
         <label>Name: </label>
         <input type="text" v-model="product.name">
-        <br><br>
         <label>Description: </label>
         <input type="text" v-model="product.description">
-        <br><br>
         <label>Price: </label>
         <input type="number" v-model="product.price">
-        <br><br>
         <label>Image URL: </label>
         <input type="text" v-model="product.image" placeholder="Enter URL">
-        <br><br>
         <label>Quantity: </label>
         <input type="number" v-model="product.quantity">
-        <br><br>
         <div class="modal-buttons">
           <button class="save-button" @click="updateProduct">Save Changes</button>
           <button class="cancel-button" @click="closeModal">Cancel</button>
@@ -75,42 +66,46 @@ export default {
       product: { product_id: '', name: '', description: '', price: '', image: '', quantity: '' },
     };
   },
-  // fetch,edit,update,delete methods
   methods: {
     async fetchProducts() {
-      const response = await fetch('http://localhost:3000/api/products');
-      this.products = await response.json();
+      try{
+        const response = await fetch('http://localhost:3000/api/products');
+        this.products = await response.json();
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     },
     editProduct(product) {
       this.product = { ...product };
       this.showModal = true;
     },
     async updateProduct() {
-      const response = await fetch(`http://localhost:3000/api/products/${this.product.product_id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: this.product.name,
-          description: this.product.description,
-          price: this.product.price,
-          image: this.product.image,
-          quantity: this.product.quantity
-        }),
-      });
-      if (response.ok) {
-        this.fetchProducts();
-        this.showModal = false;
+      try {
+        const response = await fetch(`http://localhost:3000/api/products/${this.product.product_id}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.product),
+        });
+        if (response.ok) {
+          this.fetchProducts();
+          this.showModal = false;
+        } else {
+          console.error("Failed to update product");
+        }
+      } catch (error) {
+        console.error("Error updating product:", error);
       }
     },
     async deleteProduct(id) {
-      const response = await fetch(`http://localhost:3000/api/products/${id}`, {
-         method: 'DELETE' 
-        
-        });
-      if (response.ok) {
-        this.fetchProducts();
-      } else {
-        console.error("Failed to delete");
+      try{
+        const response = await fetch(`http://localhost:3000/api/products/${id}`, { method: 'DELETE' });
+        if (response.ok) {
+          this.fetchProducts();
+        } else {
+          console.error("Failed to delete product");
+        }
+      } catch (error) {
+        console.error("Error deleting product:", error);
       }
     },
     closeModal() {
@@ -124,20 +119,19 @@ export default {
 </script>
 
 <style scoped>
-/* styles */
 .product-container {
-  background-color: #fff;
-  color: #000;
   padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  transition: transform 0.3s ease;
 }
 
 .product-title {
   color: red;
   font-size: 2rem;
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.table-responsive {
+  overflow-x: auto;
 }
 
 .product-table {
@@ -148,13 +142,16 @@ export default {
 
 .product-table th,
 .product-table td {
-  border: 1px solid #000;
+  border: 1px solid #ddd;
   padding: 10px;
-  text-align: center;
+  text-align: left;
+}
+
+.product-table th {
+  background-color: #f2f2f2;
 }
 
 .product-name {
-  color: rgb(8, 8, 8);
   font-weight: bold;
 }
 
@@ -173,19 +170,21 @@ export default {
 .remove-button,
 .save-button,
 .cancel-button {
-  background-color: red;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  border-radius: 4px;
+  padding: 8px 12px;
   margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
 }
 
-.edit-button:hover,
-.remove-button:hover,
-.save-button:hover {
-  background-color: #c00;
+.edit-button, .save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.remove-button, .cancel-button {
+  background-color: #f44336;
+  color: white;
 }
 
 .modal {
@@ -198,6 +197,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
@@ -206,17 +206,32 @@ export default {
   border-radius: 8px;
   text-align: center;
   color: #000;
+  width: 300px;
 }
 
 .modal-buttons {
   margin-top: 10px;
 }
 
-.cancel-button {
-  background-color: gray;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-table th,
+  .product-table td {
+    padding: 8px;
+    font-size: 0.9em;
+  }
 }
 
-.cancel-button:hover {
-  background-color: darkgray;
+@media (max-width: 576px) {
+  .product-table th,
+  .product-table td {
+    padding: 6px;
+    font-size: 0.8em;
+  }
+
+  .product-image {
+    width: 40px;
+    height: 40px;
+  }
 }
 </style>

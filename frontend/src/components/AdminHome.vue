@@ -1,13 +1,11 @@
 <template>
   <div class="admin-container">
-    <!-- Header Section -->
     <div class="header">
       <h1>Admin Dashboard</h1>
       <div class="user-info">
         <span v-if="username">Welcome, {{ username }}</span>
       </div>
     </div>
-    <!-- Dashboard Overview Section -->
     <div class="dashboard-overview">
       <div class="dashboard-card">
         <h3>Products</h3>
@@ -22,69 +20,65 @@
         <p>{{ uniqueCustomersCount }}</p>
       </div>
     </div>
-    <!-- Orders Management Section -->
     <div class="orders-management">
       <h2>Order Management</h2>
       <div v-if="loading">Loading...</div>
       <div v-else-if="orders.length === 0">No orders found.</div>
-      <table v-else class="orders-table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>User</th>
-            <th>Email</th>
-            <th>Product</th>
-            <th>Address</th>
-            <th>Image</th>
-            <th>Amount</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="order in orders" :key="order.order_id" class="text-center">
-            <td>{{ order.order_id }}</td>
-            <td>{{ order.user_name }}</td>
-            <td>{{ order.user_email }}</td>
-            <td>
-              <ul>
-                <li class="list" v-for="item in order.items" :key="item.product_id">
-                  {{ item.name }} - x{{ item.quantity }}
-                </li>
-              </ul>
-            </td>
-            <td>
-              <p v-if="order.shipping_address">
-                <span v-if="order.shipping_address.fullName">{{ order.shipping_address.fullName }}</span>,
-                <span v-if="order.shipping_address.address">{{ order.shipping_address.address }}</span>,
-                <span v-if="order.shipping_address.city">{{ order.shipping_address.city }}</span>,
-                <span v-if="order.shipping_address.zipCode">{{ order.shipping_address.zipCode }}</span>,
-                <span v-if="order.shipping_address.country">{{ order.shipping_address.country }}</span>
-              </p>
-              <p v-else>No Address Provided</p>
-            </td>
-            <td>
-              <ul>
-                <li class="list" v-for="item in order.items" :key="item.product_id">
-                  <img :src="item.image" alt="Product Image" class="w-16 h-16 object-cover mx-auto order-img" />
-                </li>
-              </ul>
-            </td>
-            <td>{{ order.total_price }}</td>
-            <td>{{ new Date(order.order_date).toLocaleString() }}</td>
-            <td>
-              <button @click="processOrder(order)" class="btn">
-                Process
-              </button>
-              <button @click="deleteOrder(order.order_id)" class="btn">
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div v-else class="table-responsive">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>User</th>
+              <th>Email</th>
+              <th>Products</th>
+              <th>Address</th>
+              <th>Images</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="order in orders" :key="order.order_id">
+              <td>{{ order.order_id }}</td>
+              <td>{{ order.user_name }}</td>
+              <td>{{ order.user_email }}</td>
+              <td>
+                <ul class="product-list">
+                  <li v-for="item in order.items" :key="item.product_id">
+                    {{ item.name }} - x{{ item.quantity }}
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <p v-if="order.shipping_address">
+                  <span v-if="order.shipping_address.fullName">{{ order.shipping_address.fullName }},</span>
+                  <span v-if="order.shipping_address.address">{{ order.shipping_address.address }},</span>
+                  <span v-if="order.shipping_address.city">{{ order.shipping_address.city }},</span>
+                  <span v-if="order.shipping_address.zipCode">{{ order.shipping_address.zipCode }},</span>
+                  <span v-if="order.shipping_address.country">{{ order.shipping_address.country }}</span>
+                </p>
+                <p v-else>No Address</p>
+              </td>
+              <td>
+                <ul class="image-list">
+                  <li v-for="item in order.items" :key="item.product_id">
+                    <img :src="item.image" alt="Product" class="product-image" />
+                  </li>
+                </ul>
+              </td>
+              <td>{{ order.total_price }}</td>
+              <td>{{ new Date(order.order_date).toLocaleString() }}</td>
+              <td>
+                <button @click="processOrder(order)" class="process-btn">Process</button>
+                <button @click="deleteOrder(order.order_id)" class="delete-btn">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!-- Processing Pop-Up -->
     <div v-if="isProcessing" class="popup-overlay">
       <div class="popup">
         <p>{{ processingMessage }}</p>
@@ -92,6 +86,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import jwtDecode from 'jwt-decode';
 export default {
@@ -225,13 +220,24 @@ export default {
 };
 </script>
 <style scoped>
-/* Styles for the Admin Dashboard */
+.admin-container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .dashboard-overview {
   display: flex;
   justify-content: space-around;
-  margin-top: 30px;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
+
 .dashboard-card {
   background: #333;
   color: #fff;
@@ -239,45 +245,66 @@ export default {
   border-radius: 8px;
   width: 200px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   margin: 10px;
 }
+
 .dashboard-card h3 {
   color: red;
 }
-.list {
-  list-style: none;
+
+.table-responsive {
+  overflow-x: auto;
 }
-.btn {
-  width: 70%;
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
 }
-/* Orders Table */
+
 .orders-table th,
 .orders-table td {
-  padding: 12px;
-  text-align: center;
-  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
-.order-img {
-  width: 60px;
-  height: 60px;
+
+.orders-table th {
+  background-color: #f2f2f2;
+}
+
+.product-list,
+.image-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
   object-fit: cover;
+  margin-right: 5px;
 }
-.orders-management {
-  margin-top: 30px;
-}
-button {
+
+.process-btn,
+.delete-btn {
+  padding: 8px 12px;
+  margin-right: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border: none;
+  border-radius: 4px;
 }
-button:hover {
-  background-color: #E63946;
+
+.process-btn {
+  background-color: #4CAF50;
+  color: white;
 }
-.user-info {
-  text-align: right;
-  color: whitesmoke;
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
 }
-/* Pop-Up Overlay */
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -290,12 +317,51 @@ button:hover {
   align-items: center;
   z-index: 1000;
 }
-/* Pop-Up Box */
+
 .popup {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+}
+
+.user-info {
+  color: whitesmoke;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-overview {
+    justify-content: center;
+  }
+
+  .dashboard-card {
+    width: 180px;
+    margin: 10px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-card {
+    width: 150px;
+  }
+
+  .orders-table th,
+  .orders-table td {
+    padding: 6px;
+    font-size: 0.8em;
+  }
+
+  .product-image {
+    width: 40px;
+    height: 40px;
+  }
 }
 </style>

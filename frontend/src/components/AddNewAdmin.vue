@@ -1,35 +1,33 @@
 <template>
   <div>
     <div class="admin-container">
-      <!-- Admin User Table -->
       <div class="table-container">
         <h3 class="admin-title">Admin User List</h3>
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Username</th>
-              <th>Password</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="admin_user in admin_users" :key="admin_user.id">
-              <td>{{ admin_user.id }}</td>
-              <td>{{ admin_user.username }}</td>
-              <td>{{ admin_user.password }}</td>
-              <td>{{ admin_user.email }}</td>
-              <td>
-                <button class="edit-button" @click="editAdminUser(admin_user)">Edit</button>
-                <button class="remove-button" @click="deleteAdminUser(admin_user.id)">Remove</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="admin_user in admin_users" :key="admin_user.id">
+                <td>{{ admin_user.id }}</td>
+                <td>{{ admin_user.username }}</td>
+                <td>{{ admin_user.email }}</td>
+                <td>
+                  <button class="edit-button" @click="editAdminUser(admin_user)">Edit</button>
+                  <button class="remove-button" @click="deleteAdminUser(admin_user.id)">Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <!-- Add Admin User Form -->
       <div class="form-container">
         <h3>Add Admin User</h3>
         <div class="form-group">
@@ -48,7 +46,6 @@
       </div>
     </div>
 
-    <!-- Modal for Editing -->
     <div v-if="showModal" class="modal">
       <div class="modal-content">
         <h3>Edit Admin User</h3>
@@ -59,10 +56,6 @@
         <div class="form-group">
           <label>Username: </label>
           <input type="text" v-model="adminUser.username">
-        </div>
-        <div class="form-group">
-          <label>Password: </label>
-          <input type="password" v-model="adminUser.password">
         </div>
         <div class="form-group">
           <label>Email: </label>
@@ -147,15 +140,15 @@
   padding: 20px;
   background-color: #fff;
   color: black;
-  flex-wrap: wrap; /* Ensures they wrap on smaller screens */
+  flex-wrap: wrap;
 }
 
 .admin-title {
   color: red;
   font-size: 2rem;
-  text-align: center; /* Centers the title */
+  text-align: center;
   margin-bottom: 20px;
-  width: 100%; /* Makes sure the title spans the full width */
+  width: 100%;
 }
 
 .table-container {
@@ -165,13 +158,17 @@
 
 .form-container {
   flex: 1;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
-  width: 100%; /* Ensures the form is full-width */
-  max-width: 400px; /* Optional: Constrains the form's width */
+  width: 100%;
+  max-width: 400px;
+}
+
+.table-responsive {
+    overflow-x: auto;
 }
 
 .admin-table {
@@ -179,24 +176,39 @@
   border-collapse: collapse;
 }
 
-.admin-table th, .admin-table td {
-  border: 1px solid #000;
+.admin-table th,
+.admin-table td {
+  border: 1px solid #ddd;
   padding: 10px;
-  text-align: center;
+  text-align: left;
 }
 
-.edit-button, .remove-button, .add-button, .save-button, .cancel-button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  border-radius: 4px;
+.admin-table th {
+  background-color: #f2f2f2;
+}
+
+.edit-button,
+.remove-button,
+.add-button,
+.save-button,
+.cancel-button {
+  padding: 8px 12px;
   margin: 5px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
 }
 
-.edit-button:hover, .remove-button:hover, .add-button:hover, .save-button:hover {
-  background-color: #c00;
+.edit-button,
+.save-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.remove-button,
+.cancel-button {
+  background-color: #f44336;
+  color: white;
 }
 
 .modal {
@@ -209,28 +221,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-content {
-  background: #F8F8F8;
+  background: #f8f8f8;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   color: #000;
-  width: 400px; /* Optional: Adjust width of modal */
+  width: 300px;
 }
 
 .modal-buttons {
   margin-top: 10px;
-}
-
-.cancel-button {
-  background-color: rgb(243, 8, 8);
-}
-
-.cancel-button:hover {
-  background-color: rgb(158, 6, 6);
 }
 
 /* Form styling */
@@ -239,16 +244,33 @@
 }
 
 .form-group label {
-  display: block; /* Makes label take up a full line */
-  margin-bottom: 5px; /* Adds space below the label */
+  display: block;
+  margin-bottom: 5px;
 }
 
 .form-group input {
-  width: 100%; /* Ensures the input takes up the full width */
+  width: 100%;
   padding: 8px;
   margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-table th,
+  .admin-table td {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 576px) {
+  .admin-table th,
+  .admin-table td {
+    padding: 6px;
+    font-size: 0.8em;
+  }
 }
 </style>
 

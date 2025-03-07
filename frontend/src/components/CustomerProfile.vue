@@ -68,11 +68,11 @@ export default {
         if (response.ok) {
           userOrders.value = await response.json();
         } else {
-          console.error('Failed to fetch user orders');
-          alert('Failed to fetch user orders. Please try again later.');
+          // console.error('Failed to fetch user orders');
+          alert('Please login to view profile.');
         }
       } catch (error) {
-        console.error('Error fetching user orders:', error);
+        // console.error('Error fetching user orders:', error);
         alert('An unexpected error occurred. Please try again later.');
       } finally {
         loading.value = false;

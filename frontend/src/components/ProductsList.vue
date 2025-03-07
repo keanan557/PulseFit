@@ -18,11 +18,11 @@
     <!-- Product Details View -->
 <div v-if="selectedProduct" class="product-details">
       <h2>{{ selectedProduct.name }}</h2>
-      <img :src="selectedProduct.image" :alt="selectedProduct.name" class="product-image" />
-      <p>{{ selectedProduct.description }}</p>
-      <p>Price: R{{ selectedProduct.price }}</p>
+      <!-- <img :src="selectedProduct.image" :alt="selectedProduct.name" class="product-image" /> -->
+      <!-- <p>{{ selectedProduct.description }}</p>
+      <p>Price: R{{ selectedProduct.price }}</p> -->
       <div>
-        <ProductDetails v-if="selectedProduct && selectedProduct.product_id" 
+        <ProductDetails v-if="selectedProduct && selectedProduct.product_id"
   :productId="Number(selectedProduct.product_id)" />
       </div>
       <button @click="addToCart(selectedProduct)" class="add-to-cart-button">+ Cart</button>
@@ -96,14 +96,12 @@ export default {
     return;
   }
   console.log("Valid product selected:", product);
-  
   // Ensure we're using the correct product ID field
   selectedProduct.value = {
     ...product,
     product_id: product.product_id || product.id, // Normalize the ID
   };
 };
-
     return { products, loading, addToCart, searchQuery, filteredProducts, performSearch, selectedProduct, viewProduct,notification  };
   }
 };

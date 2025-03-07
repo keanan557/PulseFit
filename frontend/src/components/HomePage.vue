@@ -6,7 +6,6 @@
         <source :src="require('@/assets/video.mp4')" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-
       <div class="hero-content">
         <h1>Elevate Your Fitness</h1>
         <p>Shop the best gym equipment and gear!</p><br><br><br><h3></h3><br><br><br><br><br><br><br><br><br><br><br>
@@ -15,7 +14,6 @@
         </button>
       </div>
     </section>
-
     <!-- Categories Section -->
     <section class="equipment-categories" id="categories">
       <h2>Browse Our Equipment</h2>
@@ -26,7 +24,6 @@
           <p>{{ category.description }}</p>
         </div>
       </div>
-      
       <!-- New Button to Navigate to Products Page -->
       <div class="view-products-button">
         <button class="shop-now-btn">
@@ -34,20 +31,18 @@
         </button>
       </div>
     </section>
-
-    <!-- bmi calculator -->
-     <div class="main">
-     <h1>Check your BMI!</h1>
-    <div class="bmi-contain">
-      <label>Enter Height in cm: </label>
-      <input type="number" v-model="height">
-      <br>
-      <label>Enter Weight in kg: </label>
-      <input type="number" v-model="weight"><br>
-      <button @click="calculateBMI" class="bmi-btn">Calculate BMI</button>
-
-      <p v-if="bmi">Your BMI: {{ bmi }}</p>
-    </div>
+    <!-- BMI Calculator Container -->
+<div class="bmi-container">
+  <h1 class="check-bmi">Check your BMI!</h1>
+  <div>
+    <label>Enter Height in cm: </label>
+    <input type="number" v-model="height">
+    <br>
+    <label>Enter Weight in kg: </label>
+    <input type="number" v-model="weight"><br>
+    <button @click="calculateBMI">Calculate BMI</button>
+    <p class="print" v-if="bmi">Your BMI: {{ bmi }}</p>
+  </div>
 </div>
     <!-- Featured Products Section -->
     <section class="featured-products" id="products">
@@ -61,23 +56,19 @@
         </div>
       </div>
     </section>
-
     <!-- Footer Section -->
     <footer>
       <p>&copy; 2025 PulseFit, All Rights Reserved</p>
     </footer>
   </div>
 </template>
-
 <script>
 import {ref} from 'vue'
-
 export default {
   setup(){
     const height = ref(0);
     const weight = ref(0);
     const bmi = ref(null);
-
     const calculateBMI = () => {
       if (height.value > 0 && weight.value > 0) {
         const heightInMeters = height.value / 100;
@@ -88,7 +79,6 @@ export default {
         bmi.value = null; // Reset BMI if input is invalid
       }
   }
-
   return {
       height,
       weight,
@@ -160,35 +150,7 @@ export default {
   },
 };
 </script>
-
 <style scoped>
-/* bmi styles */
-.bmi-btn{
-  background-color: red;
-  color: white;
-  width: 200px;
-  height: 50px;
-  border-radius: 30px;
-  cursor: pointer;
-}
-.main{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.bmi-contain{
-  /* border: 1px solid red; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-}
-
-.bmi-contain input{
-  height: 20px;
-}
 /* Home Page Global Styles */
 .home-page {
   font-family: Arial, sans-serif;
@@ -202,6 +164,9 @@ export default {
 .vap-btn{
   text-decoration-color: #fff;
 }
+.print{
+  color: #FFFFFF;
+}
 /* Hero Section Styling */
 .hero-banner {
   position: relative;
@@ -209,7 +174,6 @@ export default {
   height: 100vh;
   overflow: hidden;
 }
-
 .hero-video {
   position: absolute;
   top: 0;
@@ -219,7 +183,6 @@ export default {
   object-fit: cover;
   z-index: -1;
 }
-
 .hero-content {
   position: absolute;
   top: 50%;
@@ -229,17 +192,14 @@ export default {
   color: white;
   z-index: 1;
 }
-
 .hero-content h1 {
   font-size: 3rem;
   margin-bottom: 15px;
 }
-
 .hero-content p {
   font-size: 1.5rem;
   margin-bottom: 20px;
 }
-
 .shop-now-btn {
   padding: 15px 30px;
   background-color: #000;
@@ -249,29 +209,55 @@ export default {
   cursor: pointer;
   border-radius: 5px;
 }
-
 .shop-now-btn:hover {
   background-color: #333;
 }
-
+.bmi-container {
+  background: grey;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(to left, red, black);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.bmi-container input {
+  margin: 10px;
+  padding: 8px;
+  width: 80%;
+  font-size: 1rem;
+}
+.bmi-container button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+.bmi-container button:hover {
+  background-color: red;
+}
+.check-bmi{
+  color: white;
+}
 /* Categories Section Styling */
 .equipment-categories {
   padding: 40px 20px;
   text-align: center;
 }
-
 .equipment-categories h2 {
   font-size: 2.5rem;
   color: #000;
   margin-bottom: 30px;
 }
-
 .category-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
-
 .category-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -281,11 +267,9 @@ export default {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
-
 .category-card:hover {
   transform: scale(1.05);
 }
-
 .category-image {
   width: 100%;
   height: 200px;
@@ -293,57 +277,47 @@ export default {
   border-radius: 10px;
   margin-bottom: 15px;
 }
-
 .category-card h3 {
   font-size: 1.5rem;
   color: #000;
   margin-bottom: 10px;
 }
-
 .category-card p {
   font-size: 1rem;
   color: #555;
   margin-bottom: 15px;
 }
-
 /* Button Styling for View All Products */
 .view-products-button {
   margin-top: 30px;
 }
-
 .view-products-button .shop-now-btn {
   padding: 15px 30px;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   color: white;
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
   border-radius: 5px;
-  
 }
-
 .view-products-button .shop-now-btn:hover {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
-
 /* Featured Products Section Styling */
 .featured-products {
   padding: 40px 20px;
   text-align: center;
 }
-
 .featured-products h2 {
   font-size: 2.5rem;
   color: #000;
   margin-bottom: 30px;
 }
-
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
-
 .product-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -352,7 +326,6 @@ export default {
   text-align: center;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .product-image {
   width: 100%;
   height: 250px;
@@ -360,13 +333,11 @@ export default {
   border-radius: 10px;
   margin-bottom: 15px;
 }
-
 .product-price {
   font-size: 1.4rem;
   font-weight: bold;
   color: #E60000; /* Red */
 }
-
 .product-card button {
   padding: 10px 20px;
   background-color: #E60000; /* Red button */
@@ -377,11 +348,9 @@ export default {
   border-radius: 5px;
   transition: background-color 0.3s ease-in-out;
 }
-
 .product-card button:hover {
   background-color: #B30000; /* Darker red on hover */
 }
-
 /* Footer Styling */
 footer {
   background-color: #222;
@@ -389,16 +358,13 @@ footer {
   padding: 30px 20px;
   text-align: center;
 }
-
 footer p {
   font-size: 1rem;
 }
-
 footer a {
   color: white;
   text-decoration: none;
 }
-
 footer a:hover {
   color: #E60000; /* Red on hover */
 }

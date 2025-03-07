@@ -231,6 +231,11 @@ export default {
   margin-bottom: 20px;
 }
 
+.header h1{
+  color: black;
+  margin: auto;
+}
+
 .dashboard-overview {
   display: flex;
   justify-content: space-around;
@@ -269,7 +274,7 @@ export default {
 }
 
 .orders-table th {
-  background-color: #f2f2f2;
+  background-color: black;
 }
 
 .product-list,

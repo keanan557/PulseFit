@@ -148,7 +148,7 @@ export default {
 }
 
 .product-table th {
-  background-color: #f2f2f2;
+  background-color: black;
 }
 
 .product-name {

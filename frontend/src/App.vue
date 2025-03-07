@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar" :class="{ 'mobile-nav-open': isMobileNavOpen }">
+  <header class="navbar" :class="{ 'mobile-nav-open': isMobileNavOpen }" v-if="!isAdminPage">
     <div class="logo-container">
       <img src="@/assets/Screenshot_2025-02-13_144904-removebg-preview.png" alt="Logo" class="logo" />
     </div>

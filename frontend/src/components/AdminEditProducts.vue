@@ -100,7 +100,10 @@ export default {
       }
     },
     async deleteProduct(id) {
-      const response = await fetch(`http://localhost:3000/api/products/${id}`, { method: 'DELETE' });
+      const response = await fetch(`http://localhost:3000/api/products/${id}`, {
+         method: 'DELETE' 
+        
+        });
       if (response.ok) {
         this.fetchProducts();
       } else {

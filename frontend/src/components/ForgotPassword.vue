@@ -48,6 +48,7 @@ export default {
             success.value = false;
             message.value = '';
             try {
+                // fetch api
                 const response = await fetch('http://localhost:3000/api/reset-password', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

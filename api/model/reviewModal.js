@@ -27,12 +27,22 @@ export const getReviewById = async (id) => {
   return rows[0];
 };
 // Create a new review
-export const createReview = async (product_id, user_id, rating, comment) => { //add review_title
+// Create a new review (Model) with user name
+export const createReview = async (product_id, user_id, rating, comment) => {
   const [result] = await pool.query(
-    'INSERT INTO reviews (product_id, user_id, rating, comment) VALUES (?, ?, ?, ?)', //add review_title
-    [product_id, user_id, rating, comment] //add review_title
+      'INSERT INTO reviews (product_id, user_id, rating, comment) VALUES (?, ?, ?, ?)',
+      [product_id, user_id, rating, comment]
   );
-  return { review_id: result.insertId, product_id, user_id, rating, comment }; //add review_title
+  const reviewId = result.insertId;
+
+  const [rows] = await pool.query(`
+      SELECT reviews.review_id, reviews.product_id, reviews.rating, reviews.comment, users.name
+      FROM reviews
+      INNER JOIN users ON reviews.user_id = users.user_id
+      WHERE reviews.review_id = ?
+  `, [reviewId]);
+
+  return rows[0]; // Return the review with user name
 };
 // Update a review
 export const updateReview = async (id, product_id, user_id, rating, comment) => { //add review_title

@@ -3,11 +3,9 @@
     <div v-if="loading">Loading product details...</div>
     <div v-else-if="product" class="product-content">
       <div class="product-info">
-        <!-- <h1>{{ product.name }}</h1> -->
         <img :src="product.image" alt="Product Image" class="product-image">
         <p class="style"><strong>Price:</strong> R{{ product.price }}</p>
         <p class="style"><strong>Description:</strong> {{ product.description }}</p>
-        <!-- <p><strong>Category:</strong> {{ product.category }}</p> -->
       </div>
       <div class="reviews-container">
         <h2 class="hs">Reviews for this Product</h2>
@@ -22,21 +20,25 @@
         <div v-else>
           <p class="style">No reviews yet for this product.</p>
         </div>
-        <h2 class="hs">Add a Review</h2>
-        <form @submit.prevent="addReview" class="leave-review">
-          <label for="rating">Rating:</label>
-          <select id="rating" v-model="newReview.rating" required>
-            <option value="5">Select Rating</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          <label class="hs" for="comment">Comment:</label>
-          <textarea id="comment" v-model="newReview.comment" required></textarea>
-          <button type="submit">Submit Review</button>
-        </form>
+        <div v-if="isLoggedIn">
+          <h2 class="hs">Add a Review</h2>
+          <form @submit.prevent="addReview" class="leave-review">
+            <label for="rating" class="rating">Rating:</label>
+            <select id="rating" v-model="newReview.rating" required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <label class="hs" for="comment">Comment:</label>
+            <textarea id="comment" v-model="newReview.comment" required></textarea>
+            <button type="submit">Submit Review</button>
+          </form>
+        </div>
+        <div v-else>
+          <p class="style">Please log in to add a review.</p>
+        </div>
       </div>
     </div>
     <div v-else>
@@ -44,14 +46,17 @@
     </div>
   </div>
 </template>
+
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
+
 export default {
   props: {
     productId: {
       type: Number,
       required: true,
-      default: 0
+      default: 0,
     },
   },
   setup(props) {
@@ -62,6 +67,10 @@ export default {
       rating: 5,
       comment: '',
     });
+
+    const store = useStore();
+    const isLoggedIn = computed(() => !!store.state.user);
+
     onMounted(async () => {
       try {
         const productResponse = await fetch(`http://localhost:3000/api/products/${props.productId}`);
@@ -85,6 +94,7 @@ export default {
         loading.value = false;
       }
     });
+
     const addReview = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/reviews', {
@@ -94,7 +104,7 @@ export default {
           },
           body: JSON.stringify({
             product_id: props.productId,
-            user_id: 1, // Replace with actual user ID
+            user_id: store.state.user.user_id, // Accessing user_id
             rating: newReview.value.rating,
             comment: newReview.value.comment,
           }),
@@ -102,8 +112,9 @@ export default {
         if (response.ok) {
           const addedReview = await response.json();
           productReviews.value.push(addedReview);
-          newReview.value = { rating: 5, comment: '' }; // Reset form
+          newReview.value = { rating: 5, comment: '' };
           alert('Review added successfully!');
+          // location.reload()
         } else {
           alert('Failed to add review.');
         }
@@ -112,18 +123,20 @@ export default {
         alert('An error occurred while adding the review.');
       }
     };
+
     return {
       product,
       productReviews,
       loading,
       newReview,
       addReview,
+      isLoggedIn,
     };
   },
 };
 </script>
+
 <style scoped>
-/* Main Container */
 .product-details-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -135,7 +148,7 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-/* Layout: Product Info on Left, Reviews on Right */
+
 .product-content {
   display: flex;
   gap: 20px;
@@ -144,7 +157,11 @@ export default {
   width: 100%;
   flex-wrap: wrap;
 }
-/* Left Section: Product Info */
+
+.rating {
+  color: red;
+}
+
 .product-info {
   flex: 1;
   margin-top: 50px;
@@ -154,12 +171,12 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-/* Product Image */
+
 .product-image {
   max-width: 300px;
   border-radius: 8px;
 }
-/* Right Section: Reviews */
+
 .reviews-container {
   flex: 1;
   display: flex;
@@ -168,7 +185,7 @@ export default {
   justify-content: center;
   min-width: 300px;
 }
-/* Reviews Section */
+
 .reviews-section {
   background-color: white;
   padding: 15px;
@@ -177,7 +194,7 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-/* Individual Review Card */
+
 .review-card {
   background-color: #fff;
   padding: 10px;
@@ -187,7 +204,7 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: left;
 }
-/* Leave a Review Section */
+
 .leave-review {
   background-color: white;
   padding: 15px;
@@ -195,7 +212,7 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
-/* Input Fields */
+
 .leave-review input,
 .leave-review textarea,
 .leave-review select {
@@ -206,7 +223,7 @@ export default {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
-/* Submit Button */
+
 .leave-review button {
   background-color: red;
   color: white;
@@ -215,10 +232,11 @@ export default {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .leave-review button:hover {
   background-color: #c00;
 }
-/* Responsive Layout */
+
 @media (max-width: 768px) {
   .product-content {
     flex-direction: column;
@@ -228,10 +246,13 @@ export default {
     min-width: 100%;
   }
 }
-.style{
+
+.style {
   color: black;
 }
-.hs{
+
+.hs {
   color: #c00;
 }
+
 </style>

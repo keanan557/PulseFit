@@ -122,7 +122,7 @@ export default {
   transition: background 0.3s;
 }
 .btn:hover {
-  background-color: #0056b3;
+  background-color: red;
 }
 
 /* Error message styling */

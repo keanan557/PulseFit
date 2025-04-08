@@ -32,12 +32,14 @@ Follow these steps to run the ReflectaHome website on your local development env
 2.  **Clone the Repository:**
     ```bash
     git clone [repository URL]
-    cd [repository name]
+    cd frontend
+    cd api
     ```
 
 3.  **Install Dependencies (if using Composer):**
     ```bash
-    composer install
+    npm i
+    
     ```
 
 4.  **Database Setup:**
@@ -63,7 +65,8 @@ Follow these steps to run the ReflectaHome website on your local development env
 
 6.  **Run the Development Server (Example using PHP's built-in server):**
     ```bash
-    php -S localhost:8000 -t public
+    npm run serve for frontend
+    node --watch index.js for api 
     ```
     Then, open your web browser and navigate to `http://localhost:8000`.
 

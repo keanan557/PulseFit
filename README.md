@@ -1,7 +1,7 @@
 PulseFit Ecommerce Website
 
 [![Screenshot of Homepage](https://github.com/keanan557/pulsefit-assets/blob/6dafcea32d51891e331fefa73f9aeb455ce196e2/pulsefit-home.png)](link/to/live_demo)
-[![Animated GIF of Adding to Cart](path/to/add_to_cart_animation.gif)](link/to/live_demo)
+[![Animated GIF of Adding to Cart](https://github.com/keanan557/pulsefit-assets/blob/0602588381d46a76d405a1d787d5fc85b6c9db85/add%20to%20cart.gif)](link/to/live_demo)
 
 A fully functional e-commerce website built by [Your Student Name(s)] for the [Course Name] assignment. [Website Name] offers a [A short (1-2 sentence) summary of what the project does and its main purpose].
 

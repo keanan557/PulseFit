@@ -1,4 +1,4 @@
-# [Website Name] E-commerce Website
+PulseFit Ecommerce Website
 
 [![Screenshot of Homepage](https://github.com/keanan557/pulsefit-assets/blob/6dafcea32d51891e331fefa73f9aeb455ce196e2/pulsefit-home.png)](link/to/live_demo)
 [![Animated GIF of Adding to Cart](path/to/add_to_cart_animation.gif)](link/to/live_demo)
@@ -17,14 +17,13 @@ A fully functional e-commerce website built by [Your Student Name(s)] for the [C
 - [Author](#author)
 
 ## Live Demo
-[Link to the live deployed website](link/to/live_demo)
+[Link to the live deployed website](pulsefit-live.vercel.app/)
 
 ## Technologies Used
-- **Front-end:** HTML, CSS, JavaScript
-- **Styling:** [e.g., Bootstrap, Tailwind CSS, Custom CSS]
-- **Back-end:** PHP
+- **Front-end:** Vue
+- **Styling:** Custom CSS
+- **Back-end:** node
 - **Database:** MySQL
-- **Other:** [List any other libraries, frameworks, or tools used, e.g., Composer]
 
 ## Setup Instructions
 
@@ -102,13 +101,14 @@ This e-commerce website implements the following key features:
 
 ## Credits (If Applicable)
 [Acknowledge any libraries, frameworks, or resources used, e.g.:]
-* Bootstrap: [Link to Bootstrap]
-* [Name of other library]: [Link to library]
-
-## License (If Applicable)
-[Specify the license, e.g., MIT License](link/to/license)
+* Vue: [https://vuejs.org/]
+* MySql: [https://www.mysql.com/]
+* Node : [https://nodejs.org/en]
 
 ## Author
-[Your Student Name(s)]
-[Your Student Email(s)]
-[Your Student GitHub Profile(s)]
+Keanan 
+Anele
+Mogale
+Sphele
+
+github.com/keanan557

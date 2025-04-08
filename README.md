@@ -88,17 +88,6 @@ This e-commerce website implements the following key features:
 * **Payment System Integration:** [Specify if actual or simulated] Integration with a payment gateway (either a real implementation or a simulated process).
 * **Overall System Integration (Front-end and Back-end):** Seamless communication and data flow between the user interface and the server-side logic.
 
-## Usage Instructions (Optional)
-[Provide brief instructions on how to navigate and use the website as a regular user.]
-
-## Potential Improvements (Optional)
-[List ideas for future enhancements, such as:]
-* Advanced search and filtering options.
-* User order history.
-* Wishlist functionality.
-* More sophisticated payment gateway integration.
-* Product reviews and ratings.
-
 ## Credits (If Applicable)
 [Acknowledge any libraries, frameworks, or resources used, e.g.:]
 * Vue: [https://vuejs.org/]

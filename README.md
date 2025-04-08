@@ -1,7 +1,6 @@
 # [Website Name] E-commerce Website
 
-[![Screenshot of Homepage](              ![pulsefit-home](https://github.com/user-attachments/assets/53bde617-bd6a-4e5d-ac26-1bf03d6467e5)
-                  )](link/to/live_demo)
+[![Screenshot of Homepage](https://github.com/keanan557/pulsefit-assets/blob/6dafcea32d51891e331fefa73f9aeb455ce196e2/pulsefit-home.png)](link/to/live_demo)
 [![Animated GIF of Adding to Cart](path/to/add_to_cart_animation.gif)](link/to/live_demo)
 
 A fully functional e-commerce website built by [Your Student Name(s)] for the [Course Name] assignment. [Website Name] offers a [A short (1-2 sentence) summary of what the project does and its main purpose].

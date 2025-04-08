@@ -10,10 +10,7 @@ A fully functional e-commerce website built by Keanan,Anele,Mogale,Sphelele for 
 - [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
 - [Key Features](#key-features)
-- [Usage Instructions](#usage-instructions) (Optional)
-- [Potential Improvements](#potential-improvements) (Optional)
 - [Credits](#credits) (If Applicable)
-- [License](#license) (If Applicable)
 - [Author](#author)
 
 ## Live Demo
@@ -30,10 +27,7 @@ A fully functional e-commerce website built by Keanan,Anele,Mogale,Sphelele for 
 Follow these steps to run the ReflectaHome website on your local development environment:
 
 1.  **Prerequisites:**
-    * PHP (version >= [Specify Minimum PHP Version])
     * MySQL Server installed and running
-    * Composer (if dependencies are managed with Composer)
-    * Web server (e.g., Apache, Nginx)
 
 2.  **Clone the Repository:**
     ```bash

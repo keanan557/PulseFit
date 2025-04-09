@@ -55,7 +55,7 @@ Follow these steps to run the system on your local development environment:
         define('DB_HOST', 'localhost');
         define('DB_USER', 'your_db_user');
         define('DB_PASS', 'your_db_password');
-        define('DB_NAME', 'reflectahome');
+        define('DB_NAME', 'PulseFit');
         ?>
         ```
 
@@ -78,7 +78,7 @@ This e-commerce website implements the following key features:
 * **Product/Service Display and Catalog Implementation:** Clear and organized display of mirror products with detailed information and browsing capabilities.
 * **Shopping Cart and Order Process:** A functional shopping cart allowing users to add, modify, and checkout with their selected items.
 * **Responsive Design Implementation:** The website adapts seamlessly to various screen sizes (desktop, tablet, mobile).
-* **Database Design and Implementation:** A well-structured database (`reflectahome`) to store user, product, and order data.
+* **Database Design and Implementation:** A well-structured database (`PulseFit`) to store user, product, and order data.
 * **Authentication and User Management:** Secure authentication for users and potentially an administrative interface for managing the website.
 * **Product/Service Data Management:** [If implemented] An administrative interface for adding, editing, and deleting products.
 * **Order Processing and Management:** [If implemented] An administrative interface for viewing and managing customer orders.

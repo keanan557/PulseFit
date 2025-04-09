@@ -75,7 +75,6 @@ This e-commerce website implements the following key features:
 
 * **User Login and Registration:** Secure user registration and login functionality.
 * **User Interface Design and UX/UI Principles:** A user-friendly and visually appealing design adhering to UX/UI best practices.
-* **Product/Service Display and Catalog Implementation:** Clear and organized display of mirror products with detailed information and browsing capabilities.
 * **Shopping Cart and Order Process:** A functional shopping cart allowing users to add, modify, and checkout with their selected items.
 * **Responsive Design Implementation:** The website adapts seamlessly to various screen sizes (desktop, tablet, mobile).
 * **Database Design and Implementation:** A well-structured database (`PulseFit`) to store user, product, and order data.

@@ -24,7 +24,7 @@ A fully functional e-commerce website built by Keanan,Anele,Mogale,Sphelele for 
 
 ## Setup Instructions
 
-Follow these steps to run the ReflectaHome website on your local development environment:
+Follow these steps to run the system on your local development environment:
 
 1.  **Prerequisites:**
     * MySQL Server installed and running
@@ -43,10 +43,10 @@ Follow these steps to run the ReflectaHome website on your local development env
     ```
 
 4.  **Database Setup:**
-    * Create a new database named `reflectahome` in your MySQL server.
-    * Import the database schema from the provided SQL file (`database/reflectahome.sql` - if applicable). You can do this using a MySQL client (like phpMyAdmin or MySQL Workbench) or the command line:
+    * Create a new database named `PulseFit` in your MySQL server.
+    * Import the database schema from the provided SQL file (`database/PulseFit.sql` - if applicable). You can do this using a MySQL client (like phpMyAdmin or MySQL Workbench) or the command line:
         ```bash
-        mysql -u [your_mysql_username] -p reflectahome < database/reflectahome.sql
+        mysql -u [your_mysql_username] -p PulseFit < database/PulseFit.sql
         ```
     * Configure the database connection details in your PHP configuration file (e.g., `config.php`, `.env`):
         ```php

@@ -1,7 +1,7 @@
 PulseFit Ecommerce Website
 
-[![Screenshot of Homepage](https://github.com/keanan557/pulsefit-assets/blob/6dafcea32d51891e331fefa73f9aeb455ce196e2/pulsefit-home.png)](pulsefit-live.vercel.app/)
-[![Animated GIF of Adding to Cart](https://github.com/keanan557/pulsefit-assets/blob/0602588381d46a76d405a1d787d5fc85b6c9db85/add%20to%20cart.gif)](pulsefit-live.vercel.app/)
+[![Screenshot of Homepage](https://github.com/keanan557/pulsefit-assets/blob/6dafcea32d51891e331fefa73f9aeb455ce196e2/pulsefit-home.png)](https://pulsefit-live.vercel.app/)
+[![Animated GIF of Adding to Cart](https://github.com/keanan557/pulsefit-assets/blob/0602588381d46a76d405a1d787d5fc85b6c9db85/add%20to%20cart.gif)](https://pulsefit-live.vercel.app/)
 
 A fully functional e-commerce website built by Keanan,Anele,Mogale,Sphelele for the Module 3 assignment. PulseFit offers a solution for people looking to gain muscle and become healthy and stronger.
 
@@ -14,7 +14,7 @@ A fully functional e-commerce website built by Keanan,Anele,Mogale,Sphelele for 
 - [Author](#author)
 
 ## Live Demo
-[Link to the live deployed website](pulsefit-live.vercel.app/)
+[Link to the live deployed website](https://pulsefit-live.vercel.app/)
 
 ## Technologies Used
 - **Front-end:** Vue

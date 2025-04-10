@@ -68,7 +68,7 @@ Follow these steps to run the system on your local development environment:
     npm run serve for frontend
     node --watch index.js for api 
     ```
-    Then, open your web browser and navigate to `http://localhost:8000`.
+    Then, open your web browser and navigate to `example: http://localhost:8000`.
 
 ## Key Features
 This e-commerce website implements the following key features:
@@ -79,13 +79,12 @@ This e-commerce website implements the following key features:
 * **Responsive Design Implementation:** The website adapts seamlessly to various screen sizes (desktop, tablet, mobile).
 * **Database Design and Implementation:** A well-structured database (`PulseFit`) to store user, product, and order data.
 * **Authentication and User Management:** Secure authentication for users and potentially an administrative interface for managing the website.
-* **Product/Service Data Management:** [If implemented] An administrative interface for adding, editing, and deleting products.
-* **Order Processing and Management:** [If implemented] An administrative interface for viewing and managing customer orders.
-* **Payment System Integration:** [Specify if actual or simulated] Integration with a payment gateway (either a real implementation or a simulated process).
+* **Product/Service Data Management:**  An administrative interface for adding, editing, and deleting products.
+* **Order Processing and Management:**  An administrative interface for viewing and managing customer orders.
+* **Payment System Integration:**  Integration with a payment gateway (either a real implementation or a simulated process).
 * **Overall System Integration (Front-end and Back-end):** Seamless communication and data flow between the user interface and the server-side logic.
 
 ## Credits (If Applicable)
-[Acknowledge any libraries, frameworks, or resources used, e.g.:]
 * Vue: [https://vuejs.org/]
 * MySql: [https://www.mysql.com/]
 * Node : [https://nodejs.org/en]

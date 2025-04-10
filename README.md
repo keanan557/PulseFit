@@ -48,7 +48,7 @@ Follow these steps to run the system on your local development environment:
         ```bash
         mysql -u [your_mysql_username] -p PulseFit < database/PulseFit.sql
         ```
-    * Configure the database connection details in your PHP configuration file (e.g., `config.php`, `.env`):
+    * Configure the database connection details in your mysql configuration file (e.g., `config.js`, `.env`):
         ```php
         <?php
         // Example configuration
@@ -63,7 +63,7 @@ Follow these steps to run the system on your local development environment:
     * Ensure your web server is configured to point to the project's `public` directory (or the main entry point of your application).
     * If using Apache, you might need to enable `mod_rewrite` and configure a `.htaccess` file (if provided).
 
-6.  **Run the Development Server (Example using PHP's built-in server):**
+6.  **Run the Development Server (Example using node's built-in server):**
     ```bash
     npm run serve for frontend
     node --watch index.js for api 

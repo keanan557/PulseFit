@@ -91,11 +91,12 @@ This e-commerce website implements the following key features:
 * Node : [https://nodejs.org/en]
 
 ## Author
-Keanan 
-Anele
-Mogale
-Sphele
+* Keanan 
+* Anele
+* Mogale
+* Sphele
 
-github.com/keanan557
-github.com/Lostee23
-github.com/psycho2k3
+* github.com/keanan557
+* github.com/Lostee23
+* github.com/psycho2k3
+* github.com/Anele-Mbombiya

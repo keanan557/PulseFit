@@ -60,7 +60,8 @@ Follow these steps to run the system on your local development environment:
       export{pool}
 
        ```
-        ```env
+       ## .env
+        ```
       HOST = localhost
       USER = root
       PASSWORD = your password

@@ -49,14 +49,12 @@ Follow these steps to run the system on your local development environment:
         mysql -u [your_mysql_username] -p PulseFit < database/PulseFit.sql
         ```
     * Configure the database connection details in your mysql configuration file (e.g., `config.js`, `.env`):
-        ```php
-        <?php
-        // Example configuration
-        define('DB_HOST', 'localhost');
-        define('DB_USER', 'your_db_user');
-        define('DB_PASS', 'your_db_password');
-        define('DB_NAME', 'PulseFit');
-        ?>
+        ```env
+      HOST = localhost
+      USER = root
+      PASSWORD = your password
+      DATABASE = pulsefit
+      JWT_SECRET = ydgyg56789
         ```
 
 5.  **Web Server Configuration:**

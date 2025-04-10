@@ -49,6 +49,17 @@ Follow these steps to run the system on your local development environment:
         mysql -u [your_mysql_username] -p PulseFit < database/PulseFit.sql
         ```
     * Configure the database connection details in your mysql configuration file (e.g., `config.js`, `.env`):
+       ```
+       const pool = mysql.createPool({
+       host: process.env.host,
+       user: process.env.user,
+       password: process.env.password,
+       database: process.env.database
+})
+
+export{pool}
+
+       ```
         ```env
       HOST = localhost
       USER = root

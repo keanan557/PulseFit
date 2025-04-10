@@ -55,9 +55,9 @@ Follow these steps to run the system on your local development environment:
        user: process.env.user,
        password: process.env.password,
        database: process.env.database
-})
+      })
 
-export{pool}
+      export{pool}
 
        ```
         ```env

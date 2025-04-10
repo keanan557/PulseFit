@@ -49,6 +49,7 @@ Follow these steps to run the system on your local development environment:
         mysql -u [your_mysql_username] -p PulseFit < database/PulseFit.sql
         ```
     * Configure the database connection details in your mysql configuration file (e.g., `config.js`, `.env`):
+      ## config.js
        ```
        const pool = mysql.createPool({
        host: process.env.host,
@@ -66,7 +67,7 @@ Follow these steps to run the system on your local development environment:
       USER = root
       PASSWORD = your password
       DATABASE = pulsefit
-      JWT_SECRET = ydgyg56789
+      JWT_SECRET = your_jwt_secret
         ```
 
 5.  **Web Server Configuration:**
